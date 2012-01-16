@@ -1,10 +1,5 @@
-T7MP - Maven Plugin
+T7MP - Tomcat 7 Maven Plugin
 ====================
-
-
-
-Beware this repository will be renamed on 20.01.2012
-
 
 
 This Tomcat 7 Maven Plugin supports a full-featured Tomcat for testing 
