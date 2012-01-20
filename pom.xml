@@ -23,14 +23,14 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/t7mp/t7mp</url>
-        <connection>scm:git:https://github.com/t7mp/t7mp.git</connection>
-        <developerConnection>scm:git:https://github.com/t7mp/t7mp.git</developerConnection>
+        <url>https://github.com/t7mp/maven-t7-plugin</url>
+        <connection>scm:git:https://github.com/t7mp/maven-t7-plugin.git</connection>
+        <developerConnection>scm:git:https://github.com/t7mp/maven-t7-plugin.git</developerConnection>
     </scm>
 
     <issueManagement>
         <system>GitHub Issue Tracking</system>
-        <url>https://github.com/t7mp/t7mp/issues</url>
+        <url>https://github.com/t7mp/maven-t7-plugin/issues</url>
     </issueManagement>
 
     <developers>
@@ -288,7 +288,7 @@
     	<dependency>
     		<groupId>${project.groupId}</groupId>
     		<artifactId>maven-t7-common</artifactId>
-    		<version>${project.version}</version>
+    		<version>0.9.10.M1</version>
     	</dependency>
         <!-- MAVEN -->
         <dependency>
@@ -343,7 +343,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>10.0</version>
+            <version>11.0.1</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
