@@ -53,7 +53,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.version>2.2.1</maven.version>
-        <tomcat.version>7.0.0</tomcat.version>
+        <tomcat.version>7.0.26</tomcat.version>
         <plexus.version>1.5.4</plexus.version>
         <powermock.version>1.4.11</powermock.version>
         <velocity.version>1.6.4</velocity.version>
