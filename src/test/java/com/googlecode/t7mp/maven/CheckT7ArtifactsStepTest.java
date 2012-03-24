@@ -27,8 +27,8 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.google.common.collect.Lists;
-import com.googlecode.t7mp.AbstractArtifact;
 import com.googlecode.t7mp.JarArtifact;
+import com.googlecode.t7mp.WebappArtifact;
 import com.googlecode.t7mp.steps.Context;
 import com.googlecode.t7mp.steps.Step;
 
@@ -63,8 +63,8 @@ public class CheckT7ArtifactsStepTest {
         step.execute(context);
     }
 
-    private List<AbstractArtifact> getLibs() {
-        List<AbstractArtifact> result = Lists.newArrayList();
+    private List<JarArtifact> getLibs() {
+        List<JarArtifact> result = Lists.newArrayList();
         JarArtifact jar = new JarArtifact();
         jar.setArtifactId("commons-logging");
         jar.setGroupId("commons-logging");
@@ -103,7 +103,7 @@ public class CheckT7ArtifactsStepTest {
         return result;
     }
 
-    private List<AbstractArtifact> getWeabapps() {
+    private List<WebappArtifact> getWeabapps() {
         return Lists.newArrayList();
     }
 

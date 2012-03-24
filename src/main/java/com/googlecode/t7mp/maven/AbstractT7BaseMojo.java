@@ -30,8 +30,9 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.archiver.manager.ArchiverManager;
 
-import com.googlecode.t7mp.AbstractArtifact;
 import com.googlecode.t7mp.ConfigurationArtifact;
+import com.googlecode.t7mp.JarArtifact;
+import com.googlecode.t7mp.WebappArtifact;
 import com.googlecode.t7mp.scanner.ScannerConfiguration;
 
 /**
@@ -246,7 +247,7 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
      * 
      * @parameter
      */
-    protected ArrayList<AbstractArtifact> webapps = new ArrayList<AbstractArtifact>();
+    protected ArrayList<WebappArtifact> webapps = new ArrayList<WebappArtifact>();
 
     /**
      * 
@@ -258,7 +259,7 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
      * 
      * @parameter
      */
-    protected ArrayList<AbstractArtifact> libs = new ArrayList<AbstractArtifact>();
+    protected ArrayList<JarArtifact> libs = new ArrayList<JarArtifact>();
 
     /**
      * 
@@ -427,11 +428,11 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
         this.packaging = packaging;
     }
 
-    public List<AbstractArtifact> getLibs() {
+    public List<JarArtifact> getLibs() {
         return libs;
     }
 
-    public void setLibs(ArrayList<AbstractArtifact> libs) {
+    public void setLibs(ArrayList<JarArtifact> libs) {
         this.libs = libs;
     }
 
@@ -459,11 +460,11 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
         this.webappClassDirectory = webappClassDirectory;
     }
 
-    public List<AbstractArtifact> getWebapps() {
+    public List<WebappArtifact> getWebapps() {
         return webapps;
     }
 
-    public void setWebapps(ArrayList<AbstractArtifact> webapps) {
+    public void setWebapps(ArrayList<WebappArtifact> webapps) {
         this.webapps = webapps;
     }
 
