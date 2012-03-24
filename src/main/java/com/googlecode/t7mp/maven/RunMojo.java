@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.googlecode.t7mp;
+package com.googlecode.t7mp.maven;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,11 +23,11 @@ import org.apache.catalina.startup.Bootstrap;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
+import com.googlecode.t7mp.TomcatShutdownHook;
 import com.googlecode.t7mp.scanner.ScannerSetup;
-import com.googlecode.t7mp.steps.DefaultContext;
+import com.googlecode.t7mp.steps.Context;
 import com.googlecode.t7mp.steps.StepSequence;
 import com.googlecode.t7mp.steps.deployment.CopyJuliJarStep;
-import com.googlecode.t7mp.steps.deployment.TomcatSetupSequence;
 import com.googlecode.t7mp.util.CatalinaOutPrintStream;
 
 /**
@@ -44,9 +44,12 @@ public class RunMojo extends AbstractT7TomcatMojo {
     @Override
     @SuppressWarnings("unchecked")
     public void execute() throws MojoExecutionException, MojoFailureException {
-        PreConditions.checkConfiguredTomcatVersion(getLog(), tomcatVersion);
 
-        getSetupStepSequence().execute(new DefaultContext(this));
+        Context context = buildParentContext();
+        PreConditions.checkConfiguredTomcatVersion(context.getLog(), this.getTomcatVersion());
+
+        DefaultMavenPluginContext mavenPluginContext = new DefaultMavenPluginContext(context, this);
+        getSetupStepSequence().execute(mavenPluginContext);
 
         PrintStream originalSystemErr = System.err;
 
@@ -54,11 +57,12 @@ public class RunMojo extends AbstractT7TomcatMojo {
         getLog().info("Starting Tomcat ...");
         try {
             File catalinaout = new File(this.getCatalinaBase(), "/logs/catalina.out");
-            CatalinaOutPrintStream catalinaOutputStream = new CatalinaOutPrintStream(originalSystemErr, new FileOutputStream(catalinaout), isSuspendConsoleOutput());
+            CatalinaOutPrintStream catalinaOutputStream = new CatalinaOutPrintStream(originalSystemErr, new FileOutputStream(catalinaout),
+                    isSuspendConsoleOutput());
             System.setErr(catalinaOutputStream);
             bootstrap.init();
             final TomcatShutdownHook shutdownHook = new TomcatShutdownHook(bootstrap, catalinaOutputStream);
-            ScannerSetup.configureScanners(shutdownHook, this);
+            ScannerSetup.configureScanners(shutdownHook, this, new MavenPluginLog(this.getLog()));
             if (tomcatSetAwait) {
                 Runtime.getRuntime().addShutdownHook(shutdownHook);
                 bootstrap.setAwait(tomcatSetAwait);
@@ -75,7 +79,8 @@ public class RunMojo extends AbstractT7TomcatMojo {
     }
 
     protected StepSequence getSetupStepSequence() {
-        StepSequence seq = new TomcatSetupSequence();
+        //        StepSequence seq = new TomcatSetupSequence();
+        StepSequence seq = new MavenTomcatSetupSequence();
         seq.add(new CopyJuliJarStep());
         return seq;
     }

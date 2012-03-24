@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.googlecode.t7mp;
+package com.googlecode.t7mp.maven;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -27,10 +27,12 @@ import org.apache.maven.artifact.repository.ArtifactRepository;
 import org.apache.maven.artifact.resolver.ArtifactCollector;
 import org.apache.maven.artifact.resolver.ArtifactResolver;
 import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.archiver.manager.ArchiverManager;
 
+import com.googlecode.t7mp.ConfigurationArtifact;
+import com.googlecode.t7mp.JarArtifact;
+import com.googlecode.t7mp.WebappArtifact;
 import com.googlecode.t7mp.scanner.ScannerConfiguration;
 
 /**
@@ -245,7 +247,7 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
      * 
      * @parameter
      */
-    protected ArrayList<AbstractArtifact> webapps = new ArrayList<AbstractArtifact>();
+    protected ArrayList<WebappArtifact> webapps = new ArrayList<WebappArtifact>();
 
     /**
      * 
@@ -257,7 +259,7 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
      * 
      * @parameter
      */
-    protected List<AbstractArtifact> libs = new ArrayList<AbstractArtifact>();
+    protected ArrayList<JarArtifact> libs = new ArrayList<JarArtifact>();
 
     /**
      * 
@@ -275,8 +277,6 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
      * @parameter
      */
     protected ConfigurationArtifact configArtifact = null;
-
-    private Log log;
 
     public boolean isWebProject() {
         return this.packaging.equals("war");
@@ -428,11 +428,11 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
         this.packaging = packaging;
     }
 
-    public List<AbstractArtifact> getLibs() {
+    public List<JarArtifact> getLibs() {
         return libs;
     }
 
-    public void setLibs(ArrayList<AbstractArtifact> libs) {
+    public void setLibs(ArrayList<JarArtifact> libs) {
         this.libs = libs;
     }
 
@@ -460,11 +460,11 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
         this.webappClassDirectory = webappClassDirectory;
     }
 
-    public List<AbstractArtifact> getWebapps() {
+    public List<WebappArtifact> getWebapps() {
         return webapps;
     }
 
-    public void setWebapps(ArrayList<AbstractArtifact> webapps) {
+    public void setWebapps(ArrayList<WebappArtifact> webapps) {
         this.webapps = webapps;
     }
 
@@ -542,18 +542,6 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
 
     public void setMavenProject(MavenProject mavenProject) {
         this.mavenProject = mavenProject;
-    }
-
-    @Override
-    public Log getLog() {
-        if (this.log == null) {
-            if (lookInside) {
-                this.log = new LookInsideLog(super.getLog());
-            } else {
-                this.log = super.getLog();
-            }
-        }
-        return this.log;
     }
 
     public boolean isSuspendConsoleOutput() {

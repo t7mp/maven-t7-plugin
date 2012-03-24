@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.googlecode.t7mp;
+package com.googlecode.t7mp.maven;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -66,9 +66,9 @@ public class StopForkedMojo extends AbstractT7TomcatMojo {
 
     protected String[] getStopSkriptCommand() {
         if (SystemUtil.isWindowsSystem()) {
-            return new String[] { "cmd", "/c", "catalina.bat", "stop" };
+            return new String[] {"cmd", "/c", "catalina.bat", "stop"};
         } else {
-            return new String[] { "./catalina.sh", "stop" };
+            return new String[] {"./catalina.sh", "stop"};
         }
     }
 

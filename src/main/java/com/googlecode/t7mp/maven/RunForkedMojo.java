@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.googlecode.t7mp;
+package com.googlecode.t7mp.maven;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,10 +24,11 @@ import java.io.InputStreamReader;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
+import com.googlecode.t7mp.ForkedTomcatProcessShutdownHook;
+import com.googlecode.t7mp.TomcatSetupException;
 import com.googlecode.t7mp.scanner.ScannerSetup;
-import com.googlecode.t7mp.steps.DefaultContext;
+import com.googlecode.t7mp.steps.Context;
 import com.googlecode.t7mp.steps.StepSequence;
-import com.googlecode.t7mp.steps.deployment.ForkedSetupSequence;
 import com.googlecode.t7mp.steps.resources.CopySetenvScriptStep;
 import com.googlecode.t7mp.util.SystemUtil;
 import com.googlecode.t7mp.util.TomcatUtil;
@@ -43,12 +44,15 @@ public class RunForkedMojo extends AbstractT7TomcatMojo {
 
     private static final long SLEEPTIME = 5000;
     private Process p;
+    private Context context;
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-        PreConditions.checkConfiguredTomcatVersion(getLog(), tomcatVersion);
+        context = buildParentContext();
+        PreConditions.checkConfiguredTomcatVersion(context.getLog(), this.getTomcatVersion());
 
-        getSetupStepSequence().execute(new DefaultContext(this));
+        DefaultMavenPluginContext mavenPluginContext = new DefaultMavenPluginContext(context, this);
+        getSetupStepSequence().execute(mavenPluginContext);
         setStartScriptPermissions(TomcatUtil.getBinDirectory(this.getCatalinaBase()));
         getLog().info("Starting Tomcat ...");
         try {
@@ -73,8 +77,8 @@ public class RunForkedMojo extends AbstractT7TomcatMojo {
         int exitValue = -1;
         try {
             this.p = processBuilder.start();
-            final ForkedTomcatProcessShutdownHook shutdownHook = new ForkedTomcatProcessShutdownHook(this.p, getLog());
-            ScannerSetup.configureScanners(shutdownHook, this);
+            final ForkedTomcatProcessShutdownHook shutdownHook = new ForkedTomcatProcessShutdownHook(this.p, context.getLog());
+            ScannerSetup.configureScanners(shutdownHook, context.getConfiguration(), new MavenPluginLog(this.getLog()));
             Runtime.getRuntime().addShutdownHook(shutdownHook);
 
             InputStream is = this.p.getInputStream();
@@ -136,7 +140,6 @@ public class RunForkedMojo extends AbstractT7TomcatMojo {
         public void run() {
             startTomcat();
         }
-
     }
 
     protected StepSequence getSetupStepSequence() {
@@ -147,9 +150,9 @@ public class RunForkedMojo extends AbstractT7TomcatMojo {
 
     protected String[] getStartSkriptCommand() {
         if (SystemUtil.isWindowsSystem()) {
-            return new String[] { "cmd", "/c", "catalina.bat", "run" };
+            return new String[] {"cmd", "/c", "catalina.bat", "run"};
         } else {
-            return new String[] { "./catalina.sh", "run" };
+            return new String[] {"./catalina.sh", "run"};
         }
     }
 }
