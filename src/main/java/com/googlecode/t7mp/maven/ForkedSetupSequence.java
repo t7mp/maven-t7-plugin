@@ -13,29 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.googlecode.t7mp.steps.deployment;
+package com.googlecode.t7mp.maven;
 
+import com.googlecode.t7mp.steps.DefaultStepSequence;
+import com.googlecode.t7mp.steps.deployment.ArtifactDeploymentSequence;
+import com.googlecode.t7mp.steps.deployment.ResolveTomcatStep;
 import com.googlecode.t7mp.steps.resources.ConfigFilesSequence;
 import com.googlecode.t7mp.steps.resources.CopyConfigResourcesFromClasspathSequence;
-import com.googlecode.t7mp.steps.resources.SetSystemPropertiesStep;
 import com.googlecode.t7mp.steps.resources.WebappSequence;
 
 /**
- * Combines all steps needed to setting up an in-process-tomcat with all configured
+ * Combines all steps needed for setting up a forked-tomcat with all configured
  * elements.
  * 
- * @author jbellmann
+ * @author Joerg Bellmann
  *
  */
-public class TomcatSetupSequence extends SetupStepSequence {
+public class ForkedSetupSequence extends DefaultStepSequence {
 
-    public TomcatSetupSequence() {
-        this.add(new CheckT7ArtifactsStep());
-        this.add(new ResolveTomcatStep());
-        this.add(new CopyConfigResourcesFromClasspathSequence());
-        this.add(new ConfigFilesSequence());
-        this.add(new ArtifactDeploymentSequence());
-        this.add(new WebappSequence());
-        this.add(new SetSystemPropertiesStep());
+    public ForkedSetupSequence() {
+        add(new CheckT7ArtifactsStep());
+        add(new ResolveTomcatStep());
+        add(new CopyConfigResourcesFromClasspathSequence());
+        add(new ConfigFilesSequence());
+        add(new ArtifactDeploymentSequence());
+        add(new WebappSequence());
+        //        add(new CopyProjectWebappStep());
+        //        add(new OverwriteWebXmlStep());
     }
+
 }

@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.googlecode.t7mp;
+package com.googlecode.t7mp.maven;
 
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.logging.Log;
+
+import com.googlecode.t7mp.PluginLog;
 
 /**
  * TODO Comment.
@@ -29,7 +30,7 @@ final class PreConditions {
         throw new RuntimeException("Dont call this private constructor");
     }
 
-    static void checkConfiguredTomcatVersion(Log log, String tomcatVersion) throws MojoExecutionException {
+    static void checkConfiguredTomcatVersion(PluginLog log, String tomcatVersion) throws MojoExecutionException {
         if (!tomcatVersion.startsWith("7.") && !tomcatVersion.startsWith("6.")) {
             log.info("");
             log.info("");
