@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.googlecode.its.t7mp</groupId>
+    <artifactId>test</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>Run</name>
+    <description>Test t7:run</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.googlecode.t7mp</groupId>
+                <artifactId>maven-t7-plugin</artifactId>
+                <version>0.9.10.M2</version>
+                <configuration>
+                    <tomcatVersion>7.0.26</tomcatVersion>
+                    <tomcatSetAwait>false</tomcatSetAwait>
+                    <lookInside>true</lookInside>
+                    <systemProperties>
+                        <XXXX>${basedir}</XXXX>
+                    </systemProperties>
+                    <libs>
+                        <jarArtifact>
+                            <groupId>bla</groupId>
+                            <artifactId>blub</artifactId>
+                            <version>0.0.1</version>
+                            <systemPath>${basedir}/system/tomcatconfig-0.0.1-SNAPSHOT.jar</systemPath>
+                        </jarArtifact>
+                    </libs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>test-run</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                    </execution>
+                    <execution>
+                        <id>test-stop-server</id>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                        <phase>post-integration-test</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

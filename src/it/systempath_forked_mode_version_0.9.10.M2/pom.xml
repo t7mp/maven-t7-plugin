@@ -18,7 +18,7 @@
             <plugin>
                 <groupId>com.googlecode.t7mp</groupId>
                 <artifactId>maven-t7-plugin</artifactId>
-                <version>@project.version@</version>
+                <version>0.9.10.M2</version>
                 <configuration>
                     <tomcatVersion>7.0.26</tomcatVersion>
                     <tomcatSetAwait>false</tomcatSetAwait>
@@ -39,13 +39,14 @@
                     <execution>
                         <id>test-run</id>
                         <goals>
-                            <goal>run</goal>
+                            <goal>run-forked</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                     </execution>
                     <execution>
                         <id>test-stop-server</id>
                         <goals>
-                            <goal>stop</goal>
+                            <goal>stop-forked</goal>
                         </goals>
                         <phase>post-integration-test</phase>
                     </execution>
