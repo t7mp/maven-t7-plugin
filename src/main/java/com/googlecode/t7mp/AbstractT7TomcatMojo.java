@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.googlecode.t7mp.maven;
+package com.googlecode.t7mp;
 
 import com.googlecode.t7mp.T7Configuration;
 import com.googlecode.t7mp.TomcatArtifact;

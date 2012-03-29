@@ -13,31 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.googlecode.t7mp.maven;
+package com.googlecode.t7mp;
 
-import com.google.common.base.Predicate;
-import com.googlecode.t7mp.AbstractArtifact;
-import com.googlecode.t7mp.PluginLog;
+import com.googlecode.t7mp.steps.DefaultStepSequence;
+import com.googlecode.t7mp.steps.deployment.TomcatSetupSequence;
 
 /**
+ * TomcatSetupSequence in a Maven-Environment.
  * 
  * @author Joerg Bellmann
  *
  */
-class NoVersionPredicate implements Predicate<AbstractArtifact> {
+public class MavenTomcatSetupSequence extends DefaultStepSequence {
 
-    private final PluginLog log;
-
-    public NoVersionPredicate(PluginLog log) {
-        this.log = log;
+    public MavenTomcatSetupSequence() {
+        this.add(new CheckT7ArtifactsStep());
+        // add the default
+        this.add(new TomcatSetupSequence());
     }
 
-    @Override
-    public boolean apply(AbstractArtifact artifact) {
-        boolean apply = (artifact.getVersion() == null);
-        if (apply) {
-            log.debug("Artifact " + artifact.toString() + " has no version configured.");
-        }
-        return apply;
-    }
 }

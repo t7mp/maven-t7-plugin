@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.googlecode.t7mp.maven;
+package com.googlecode.t7mp;
 
 import java.util.Collection;
 import java.util.List;
@@ -26,9 +26,9 @@ import org.mockito.Mockito;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import com.googlecode.t7mp.AbstractArtifact;
+import com.googlecode.t7mp.FindVersionPredicate;
 import com.googlecode.t7mp.JarArtifact;
 import com.googlecode.t7mp.PluginLog;
-import com.googlecode.t7mp.maven.FindVersionPredicate;
 
 public class FindVersionPredicateTest {
 

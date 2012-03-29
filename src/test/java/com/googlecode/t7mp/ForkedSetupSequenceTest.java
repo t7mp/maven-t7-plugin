@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.googlecode.t7mp.maven;
+package com.googlecode.t7mp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,8 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.googlecode.t7mp.BaseConfiguration;
+import com.googlecode.t7mp.CheckT7ArtifactsStep;
+import com.googlecode.t7mp.ForkedSetupSequence;
 import com.googlecode.t7mp.configuration.ChainedArtifactResolver;
 import com.googlecode.t7mp.steps.Context;
 import com.googlecode.t7mp.steps.DefaultContext;
