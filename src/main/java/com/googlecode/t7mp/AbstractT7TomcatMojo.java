@@ -15,8 +15,6 @@
  */
 package com.googlecode.t7mp;
 
-import com.googlecode.t7mp.T7Configuration;
-import com.googlecode.t7mp.TomcatArtifact;
 import com.googlecode.t7mp.configuration.ChainedArtifactResolver;
 import com.googlecode.t7mp.steps.Context;
 import com.googlecode.t7mp.steps.DefaultContext;

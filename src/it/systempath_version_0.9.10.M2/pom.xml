@@ -18,7 +18,7 @@
             <plugin>
                 <groupId>com.googlecode.t7mp</groupId>
                 <artifactId>maven-t7-plugin</artifactId>
-                <version>0.9.10.M2</version>
+                <version>0.9.10.M3</version>
                 <configuration>
                     <tomcatVersion>7.0.26</tomcatVersion>
                     <tomcatSetAwait>false</tomcatSetAwait>

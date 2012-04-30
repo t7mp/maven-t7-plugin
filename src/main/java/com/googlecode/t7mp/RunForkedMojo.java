@@ -24,12 +24,10 @@ import java.io.InputStreamReader;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
-import com.googlecode.t7mp.ForkedTomcatProcessShutdownHook;
-import com.googlecode.t7mp.TomcatSetupException;
 import com.googlecode.t7mp.scanner.ScannerSetup;
 import com.googlecode.t7mp.steps.Context;
+import com.googlecode.t7mp.steps.CopySetenvScriptStep;
 import com.googlecode.t7mp.steps.StepSequence;
-import com.googlecode.t7mp.steps.resources.CopySetenvScriptStep;
 import com.googlecode.t7mp.util.SystemUtil;
 import com.googlecode.t7mp.util.TomcatUtil;
 

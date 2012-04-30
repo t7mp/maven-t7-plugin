@@ -289,7 +289,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>maven-t7-common</artifactId>
-            <version>0.9.10.M5</version>
+            <version>0.9.10-SNAPSHOT</version>
         </dependency>
         <!-- MAVEN -->
         <dependency>

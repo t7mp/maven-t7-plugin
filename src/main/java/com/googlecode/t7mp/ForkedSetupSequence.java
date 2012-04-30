@@ -15,12 +15,12 @@
  */
 package com.googlecode.t7mp;
 
+import com.googlecode.t7mp.steps.ArtifactDeploymentSequence;
+import com.googlecode.t7mp.steps.ConfigFilesSequence;
+import com.googlecode.t7mp.steps.CopyConfigResourcesFromClasspathSequence;
 import com.googlecode.t7mp.steps.DefaultStepSequence;
-import com.googlecode.t7mp.steps.deployment.ArtifactDeploymentSequence;
-import com.googlecode.t7mp.steps.deployment.ResolveTomcatStep;
-import com.googlecode.t7mp.steps.resources.ConfigFilesSequence;
-import com.googlecode.t7mp.steps.resources.CopyConfigResourcesFromClasspathSequence;
-import com.googlecode.t7mp.steps.resources.WebappSequence;
+import com.googlecode.t7mp.steps.ResolveTomcatStep;
+import com.googlecode.t7mp.steps.WebappSequence;
 
 /**
  * Combines all steps needed for setting up a forked-tomcat with all configured

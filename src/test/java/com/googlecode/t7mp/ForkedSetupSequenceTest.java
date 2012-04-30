@@ -22,18 +22,15 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.googlecode.t7mp.BaseConfiguration;
-import com.googlecode.t7mp.CheckT7ArtifactsStep;
-import com.googlecode.t7mp.ForkedSetupSequence;
 import com.googlecode.t7mp.configuration.ChainedArtifactResolver;
+import com.googlecode.t7mp.steps.ArtifactDeploymentSequence;
+import com.googlecode.t7mp.steps.ConfigFilesSequence;
 import com.googlecode.t7mp.steps.Context;
+import com.googlecode.t7mp.steps.CopyConfigResourcesFromClasspathSequence;
 import com.googlecode.t7mp.steps.DefaultContext;
+import com.googlecode.t7mp.steps.ResolveTomcatStep;
 import com.googlecode.t7mp.steps.Step;
-import com.googlecode.t7mp.steps.deployment.ArtifactDeploymentSequence;
-import com.googlecode.t7mp.steps.deployment.ResolveTomcatStep;
-import com.googlecode.t7mp.steps.resources.ConfigFilesSequence;
-import com.googlecode.t7mp.steps.resources.CopyConfigResourcesFromClasspathSequence;
-import com.googlecode.t7mp.steps.resources.WebappSequence;
+import com.googlecode.t7mp.steps.WebappSequence;
 
 public class ForkedSetupSequenceTest {
 

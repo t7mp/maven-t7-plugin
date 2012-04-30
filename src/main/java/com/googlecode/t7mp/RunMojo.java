@@ -23,11 +23,10 @@ import org.apache.catalina.startup.Bootstrap;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
-import com.googlecode.t7mp.TomcatShutdownHook;
 import com.googlecode.t7mp.scanner.ScannerSetup;
 import com.googlecode.t7mp.steps.Context;
+import com.googlecode.t7mp.steps.CopyJuliJarStep;
 import com.googlecode.t7mp.steps.StepSequence;
-import com.googlecode.t7mp.steps.deployment.CopyJuliJarStep;
 import com.googlecode.t7mp.util.CatalinaOutPrintStream;
 
 /**

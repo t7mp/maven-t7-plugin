@@ -16,7 +16,7 @@
 package com.googlecode.t7mp;
 
 import com.googlecode.t7mp.steps.DefaultStepSequence;
-import com.googlecode.t7mp.steps.deployment.TomcatSetupSequence;
+import com.googlecode.t7mp.steps.TomcatSetupSequence;
 
 /**
  * TomcatSetupSequence in a Maven-Environment.
