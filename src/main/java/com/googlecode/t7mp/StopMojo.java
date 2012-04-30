@@ -38,18 +38,29 @@ import org.apache.maven.plugin.MojoFailureException;
  */
 public final class StopMojo extends AbstractMojo {
 
+    private PluginLog log;
+
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
+        this.log = new MavenPluginLog(this.getLog());
+        log.info("Executing stop-mojo ...");
         Bootstrap bootstrap = (Bootstrap) getPluginContext().get(AbstractT7BaseMojo.T7_BOOTSTRAP_CONTEXT_ID);
         getPluginContext().remove(AbstractT7BaseMojo.T7_BOOTSTRAP_CONTEXT_ID);
         if (bootstrap != null) {
             try {
+                log.info("Stopping Bootstrap-instance ...");
                 bootstrap.stop();
+                log.info("Cleanup MBean-Server ...");
                 cleanupMBeanServer();
-                Thread.sleep(5000);
+                Thread.sleep(3000);
+                log.info("Bootstrap-instance stopped, MBean-Server cleaned up.");
             } catch (Exception e) {
                 throw new MojoExecutionException("Error stopping the Tomcat with Bootstrap from Plugin-Context", e);
             }
+        } else {
+            log.warn("No Bootstrap-instance found in plugin-context.");
+            log.warn("Seems u are trying some strange things or it's a bug.");
+            log.warn("Maybe 't7:stop-forked' can help.");
         }
     }
 

@@ -25,6 +25,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 import com.googlecode.t7mp.util.SystemUtil;
+import com.googlecode.t7mp.util.TomcatUtil;
 
 /**
  * 
@@ -35,10 +36,15 @@ import com.googlecode.t7mp.util.SystemUtil;
  */
 public class StopForkedMojo extends AbstractT7TomcatMojo {
 
-    private static final long SLEEPTIME = 10000;
+    private static final long SLEEPTIME = 3000;
+
+    private PluginLog log;
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
+        this.log = new MavenPluginLog(this.getLog());
+        log.info("running t7:stop-forked ...");
+        setStartScriptPermissions(TomcatUtil.getBinDirectory(this.getCatalinaBase()));
         ProcessBuilder processBuilder = new ProcessBuilder(getStopSkriptCommand());
         int exitValue = -1;
         try {
@@ -48,7 +54,7 @@ public class StopForkedMojo extends AbstractT7TomcatMojo {
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String line;
             while ((line = br.readLine()) != null) {
-                getLog().info(line);
+                log.info(line);
             }
             exitValue = p.waitFor();
         } catch (InterruptedException e) {
@@ -59,9 +65,9 @@ public class StopForkedMojo extends AbstractT7TomcatMojo {
         try {
             Thread.sleep(SLEEPTIME);
         } catch (InterruptedException e) {
-            getLog().error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
-        getLog().debug("Exit-Value ForkedTomcatShutdownHook " + exitValue);
+        log.info("Exit-Value ForkedTomcatShutdownHook " + exitValue);
     }
 
     protected String[] getStopSkriptCommand() {
@@ -70,6 +76,29 @@ public class StopForkedMojo extends AbstractT7TomcatMojo {
         } else {
             return new String[] {"./catalina.sh", "stop"};
         }
+    }
+
+    protected void setStartScriptPermissions(File binDirectory) {
+        log.debug("set permissions ...");
+        if (SystemUtil.isWindowsSystem()) {
+            // do we have filepermissions on windows
+            return;
+        }
+        ProcessBuilder processBuilder = new ProcessBuilder("chmod", "755", "catalina.sh", "setclasspath.sh", "startup.sh", "shutdown.sh");
+        processBuilder.directory(binDirectory);
+        processBuilder.redirectErrorStream(true);
+        int exitValue = -1;
+        try {
+            Process p = processBuilder.start();
+            exitValue = p.waitFor();
+        } catch (InterruptedException e) {
+            getLog().error(e.getMessage(), e);
+            throw new TomcatSetupException(e.getMessage(), e);
+        } catch (IOException e) {
+            getLog().error(e.getMessage(), e);
+            throw new TomcatSetupException(e.getMessage(), e);
+        }
+        log.debug("SetStartScriptPermission return value " + exitValue);
     }
 
 }
