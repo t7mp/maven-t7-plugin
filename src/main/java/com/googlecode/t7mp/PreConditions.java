@@ -17,8 +17,6 @@ package com.googlecode.t7mp;
 
 import org.apache.maven.plugin.MojoExecutionException;
 
-import com.googlecode.t7mp.PluginLog;
-
 /**
  * TODO Comment.
  * @author jbellmann

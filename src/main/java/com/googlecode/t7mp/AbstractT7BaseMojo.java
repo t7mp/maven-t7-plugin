@@ -30,9 +30,6 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.archiver.manager.ArchiverManager;
 
-import com.googlecode.t7mp.ConfigurationArtifact;
-import com.googlecode.t7mp.JarArtifact;
-import com.googlecode.t7mp.WebappArtifact;
 import com.googlecode.t7mp.scanner.ScannerConfiguration;
 
 /**

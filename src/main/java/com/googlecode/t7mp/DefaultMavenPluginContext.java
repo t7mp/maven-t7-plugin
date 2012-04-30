@@ -15,8 +15,6 @@
  */
 package com.googlecode.t7mp;
 
-import com.googlecode.t7mp.PluginLog;
-import com.googlecode.t7mp.T7Configuration;
 import com.googlecode.t7mp.configuration.PluginArtifactResolver;
 import com.googlecode.t7mp.steps.Context;
 

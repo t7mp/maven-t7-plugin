@@ -22,8 +22,6 @@ import org.apache.maven.model.Dependency;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Maps;
-import com.googlecode.t7mp.AbstractArtifact;
-import com.googlecode.t7mp.PluginLog;
 
 final class FindVersionPredicate implements Predicate<Dependency> {
 
@@ -33,8 +31,7 @@ final class FindVersionPredicate implements Predicate<Dependency> {
     public FindVersionPredicate(Collection<AbstractArtifact> noVersionArtifacts, PluginLog log) {
         this.log = log;
         for (AbstractArtifact artifact : noVersionArtifacts) {
-            String key = artifact.getGroupId() + ":" + artifact.getArtifactId() + ":" + artifact.getType() + ":"
-                    + artifact.getClassifier();
+            String key = artifact.getGroupId() + ":" + artifact.getArtifactId() + ":" + artifact.getType() + ":" + artifact.getClassifier();
             log.debug("put key [" + key + "] to map for artifact [" + artifact + "]");
             searchMap.put(key, artifact);
         }
@@ -42,8 +39,7 @@ final class FindVersionPredicate implements Predicate<Dependency> {
 
     @Override
     public boolean apply(Dependency artifact) {
-        String key = artifact.getGroupId() + ":" + artifact.getArtifactId() + ":" + artifact.getType() + ":"
-                + artifact.getClassifier();
+        String key = artifact.getGroupId() + ":" + artifact.getArtifactId() + ":" + artifact.getType() + ":" + artifact.getClassifier();
         log.debug("Search with key [" + key + "] for artifact " + artifact.toString());
         if (searchMap.containsKey(key)) {
             log.debug("Found something with key [" + key + "] for artifact " + artifact.toString());

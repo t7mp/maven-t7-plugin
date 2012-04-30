@@ -23,10 +23,6 @@ import org.apache.maven.model.Dependency;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
-import com.googlecode.t7mp.AbstractArtifact;
-import com.googlecode.t7mp.T7Configuration;
-import com.googlecode.t7mp.PluginLog;
-import com.googlecode.t7mp.TomcatSetupException;
 import com.googlecode.t7mp.steps.Context;
 import com.googlecode.t7mp.steps.Step;
 
@@ -81,7 +77,8 @@ public class CheckT7ArtifactsStep implements Step {
 
     protected void logDependencies(List<Dependency> dependencies) {
         for (Dependency dependency : dependencies) {
-            log.debug("found dependency : " + dependency.toString() + " groupId:" + dependency.getGroupId() + " artifactId:" + dependency.getArtifactId() + " version:" + dependency.getVersion() + " packaging:" + dependency.getType());
+            log.debug("found dependency : " + dependency.toString() + " groupId:" + dependency.getGroupId() + " artifactId:" + dependency.getArtifactId()
+                    + " version:" + dependency.getVersion() + " packaging:" + dependency.getType());
         }
     }
 

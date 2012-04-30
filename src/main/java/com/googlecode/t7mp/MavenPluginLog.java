@@ -17,8 +17,6 @@ package com.googlecode.t7mp;
 
 import org.apache.maven.plugin.logging.Log;
 
-import com.googlecode.t7mp.PluginLog;
-
 public class MavenPluginLog implements PluginLog {
 
     private final Log realLog;

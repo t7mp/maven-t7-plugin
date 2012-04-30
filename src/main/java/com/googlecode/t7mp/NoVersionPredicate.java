@@ -16,8 +16,6 @@
 package com.googlecode.t7mp;
 
 import com.google.common.base.Predicate;
-import com.googlecode.t7mp.AbstractArtifact;
-import com.googlecode.t7mp.PluginLog;
 
 /**
  * 

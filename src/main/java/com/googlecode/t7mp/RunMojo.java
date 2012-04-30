@@ -60,7 +60,7 @@ public class RunMojo extends AbstractT7TomcatMojo {
                     isSuspendConsoleOutput());
             System.setErr(catalinaOutputStream);
             bootstrap.init();
-            final TomcatShutdownHook shutdownHook = new TomcatShutdownHook(bootstrap, catalinaOutputStream);
+            final TomcatShutdownHook shutdownHook = new TomcatShutdownHook(bootstrap, catalinaOutputStream, new MavenPluginLog(this.getLog()));
             ScannerSetup.configureScanners(shutdownHook, this, new MavenPluginLog(this.getLog()));
             if (tomcatSetAwait) {
                 Runtime.getRuntime().addShutdownHook(shutdownHook);
