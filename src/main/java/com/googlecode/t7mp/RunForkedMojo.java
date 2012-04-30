@@ -75,9 +75,12 @@ public class RunForkedMojo extends AbstractT7TomcatMojo {
         int exitValue = -1;
         try {
             this.p = processBuilder.start();
-            final ForkedTomcatProcessShutdownHook shutdownHook = new ForkedTomcatProcessShutdownHook(this.p, context.getLog());
-            ScannerSetup.configureScanners(shutdownHook, context.getConfiguration(), new MavenPluginLog(this.getLog()));
-            Runtime.getRuntime().addShutdownHook(shutdownHook);
+
+            if (this.tomcatSetAwait) {
+                final ForkedTomcatProcessShutdownHook shutdownHook = new ForkedTomcatProcessShutdownHook(this.p, context.getLog());
+                ScannerSetup.configureScanners(shutdownHook, context.getConfiguration(), new MavenPluginLog(this.getLog()));
+                Runtime.getRuntime().addShutdownHook(shutdownHook);
+            }
 
             InputStream is = this.p.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
