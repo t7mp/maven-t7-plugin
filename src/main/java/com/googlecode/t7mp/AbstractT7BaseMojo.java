@@ -45,7 +45,7 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
 
     public static final int DEFAULT_TOMCAT_SHUTDOWN_PORT = 8005;
 
-    public static final String DEFAULT_TOMCAT_VERSION = "7.0.27";
+    public static final String DEFAULT_TOMCAT_VERSION = "7.0.29";
 
     public static final String CONTEXT_PATH_ROOT = "ROOT";
 
@@ -130,7 +130,7 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
 
     /**
      * 
-     * @parameter expression="${t7.tomcatVersion}" default-value="7.0.27"
+     * @parameter expression="${t7.tomcatVersion}" default-value="7.0.29"
      */
     protected String tomcatVersion = DEFAULT_TOMCAT_VERSION;
 
@@ -158,6 +158,13 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
      * 
      */
     protected String tomcatShutdownHost = "localhost";
+    
+    /**
+     * 
+     * @parameter expression="${t7.tomcatHostName}" default-value="localhost"
+     * 
+     */
+    protected String tomcatHostName = "localhost";
 
     /**
      * 
@@ -349,6 +356,14 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
 
     public void setTomcatShutdownHost(String tomcatShutdownHost) {
         this.tomcatShutdownHost = tomcatShutdownHost;
+    }
+
+    public String getTomcatHostName() {
+        return tomcatHostName;
+    }
+
+    public void setTomcatHostName(String tomcatHostName) {
+        this.tomcatHostName = tomcatHostName;
     }
 
     public File getUserConfigDir() {

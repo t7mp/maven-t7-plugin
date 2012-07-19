@@ -38,10 +38,10 @@
     <Connector port="${http.port}" protocol="HTTP/1.1" 
                connectionTimeout="20000" 
                redirectPort="8443" />
-    <Engine name="Catalina" defaultHost="localhost">
+    <Engine name="Catalina" defaultHost="${tomcat.hostname}">
       <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
              resourceName="UserDatabase"/>
-      <Host name="localhost"  appBase="webapps"
+      <Host name="${tomcat.hostname}"  appBase="webapps"
           unpackWARs="true" autoDeploy="true">
       <!-- Access log processes all example.
            Documentation at: /docs/config/valve.html
