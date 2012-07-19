@@ -20,9 +20,8 @@
 				<artifactId>maven-t7-plugin</artifactId>
 				<version>@project.version@</version>
 				<configuration>
-					<tomcatVersion>7.0.26</tomcatVersion>
+					<tomcatVersion>7.0.28</tomcatVersion>
 					<tomcatSetAwait>false</tomcatSetAwait>
-					<tomcatHostName>mySpecialHost</tomcatHostName>
 					<lookInside>true</lookInside>
 					<systemProperties>
                        <XXXX>${basedir}</XXXX>
