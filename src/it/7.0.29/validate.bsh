@@ -9,7 +9,7 @@ String[] expectedFiles = {
     "catalina-ha.jar",
     "catalina-tribes.jar",
     "catalina.jar",
-    "ecj-3.7.1.jar",
+    "ecj-3.7.2.jar",
     "el-api.jar",
     "jasper-el.jar",
     "jasper.jar",
