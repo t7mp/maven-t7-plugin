@@ -15,29 +15,29 @@
  */
 package com.googlecode.t7mp;
 
-import org.apache.maven.plugin.MojoExecutionException;
-
 /**
  * TODO Comment.
- * @author jbellmann
+ * @author Joerg Bellmann
  *
  */
-final class PreConditions {
+public final class PreConditions {
 
     private PreConditions() {
         throw new RuntimeException("Dont call this private constructor");
     }
 
-    static void checkConfiguredTomcatVersion(PluginLog log, String tomcatVersion) throws MojoExecutionException {
+    public static void checkConfiguredTomcatVersion(PluginLog log, String tomcatVersion) {
         if (!tomcatVersion.startsWith("7.") && !tomcatVersion.startsWith("6.")) {
             log.info("");
             log.info("");
             log.error("======================= MAVEN-T7-PLUGIN ==================");
-            log.error("This plugin supports only Version 7 or 6 of Tomcat. You configured: " + tomcatVersion + ". Cancel the Build.");
+            log.error("This plugin supports only Version 7 or 6 of Tomcat. You configured: " + tomcatVersion
+                    + ". Cancel the Build.");
             log.error("===========================================================");
             log.info("");
             log.info("");
-            throw new MojoExecutionException("This plugin supports only Version 7 or 6 of Tomcat. You configured " + tomcatVersion);
+            throw new TomcatSetupException("This plugin supports only Version 7 or 6 of Tomcat. You configured "
+                    + tomcatVersion);
         }
     }
 }
