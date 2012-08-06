@@ -33,6 +33,9 @@ import com.googlecode.t7mp.util.TomcatUtil;
 
 /**
  * 
+ * Runs a Tomcat 7 (or 6) instance in an separate process (jvm), other than the 
+ * maven build.
+ * 
  * @goal run-forked
  * @requiresDependencyResolution test
  * 

@@ -31,7 +31,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**
- * This Mojo uses the plugin context to get a reference to shutdown.
+ * Stops the Tomcat instance.
  * 
  * @goal stop
  *

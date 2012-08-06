@@ -29,6 +29,8 @@ import com.googlecode.t7mp.util.TomcatUtil;
 
 /**
  * 
+ * Stops the forked Tomcat instance.
+ * 
  * @goal stop-forked
  * @requiresDependencyResolution runtime
  * 
