@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+    <properties>
+        <title>maven-t7-plugin</title>
+    </properties>
+    
+    
+    <body>
+        <div class="hero-unit">
+            <p>
+                <h1>maven-t7-plugin</h1>
+            </p>
+            <p>It's so easy to run Tomcat 7 (or 6 if you want) in your Maven project. Just add corresponding 
+                <em>groupId</em>, 
+                <em>artifactId</em> and 
+                <em>version</em> to your pom.xml.
+            </p>
+            <pre>&lt;plugin&gt;
+    &lt;groupId>com.googlecode.t7mp&lt;/groupId&gt;
+    &lt;artifactId>maven-t7-plugin&lt;/artifactId&gt;
+    &lt;version>0.9.10.M6&lt;/version&gt;
+&lt;/plugin&gt;
+            </pre>
+            <p>Start your build as usual with the following goal:
+                <br/>
+                <pre>mvn t7:run</pre>
+            </p>
+            <p>That's it.</p>
+        </div>
+    </body>
+</document>

@@ -24,6 +24,10 @@
         <artifactId>maven-fluido-skin</artifactId>
         <version>1.2.2</version>
     </skin>
+    <!--
+    <publishDate position="right"/>
+    <version position="right"/>
+    -->
     
   <body>
   

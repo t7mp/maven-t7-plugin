@@ -31,7 +31,7 @@
 
     <issueManagement>
         <system>GitHub Issue Tracking</system>
-        <url>https://github.com/t7mp/maven-t7-plugin/issues</url>
+        <url>https://github.com/t7mp/t7mp/issues</url>
     </issueManagement>
 
     <developers>
@@ -44,6 +44,15 @@
             </roles>
             <timezone>+1</timezone>
             <organization>Joerg Bellmann</organization>
+        </developer>
+        <developer>
+            <id>marco.buss</id>
+            <name>Marco Buss</name>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>+1</timezone>
+            <organization>Marco Buss</organization>
         </developer>
     </developers>
 
