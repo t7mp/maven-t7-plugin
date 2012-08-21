@@ -20,10 +20,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
+import com.googlecode.t7mp.steps.Context;
 import com.googlecode.t7mp.util.SystemUtil;
 import com.googlecode.t7mp.util.TomcatUtil;
 
@@ -41,35 +43,44 @@ public class StopForkedMojo extends AbstractT7TomcatMojo {
     private static final long SLEEPTIME = 3000;
 
     private PluginLog log;
+    private Context context;
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
+        context = buildParentContext();
         this.log = new MavenPluginLog(this.getLog());
         log.info("running t7:stop-forked ...");
-        setStartScriptPermissions(TomcatUtil.getBinDirectory(this.getCatalinaBase()));
-        ProcessBuilder processBuilder = new ProcessBuilder(getStopSkriptCommand());
-        int exitValue = -1;
-        try {
-            File binDirectory = new File(getCatalinaBase(), "/bin/");
-            Process p = processBuilder.directory(binDirectory).start();
-            InputStream is = p.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            String line;
-            while ((line = br.readLine()) != null) {
-                log.info(line);
+
+        DefaultMavenPluginContext mavenPluginContext = new DefaultMavenPluginContext(context, this);
+
+        List<InstanceConfiguration> configurations = InstanceConfigurationUtil.createInstanceConfigurations(mavenPluginContext);
+
+        for (InstanceConfiguration configuration : configurations) {
+            setStartScriptPermissions(TomcatUtil.getBinDirectory(new File(configuration.getCatalinaBasePath())));
+            ProcessBuilder processBuilder = new ProcessBuilder(getStopSkriptCommand());
+            int exitValue = -1;
+            try {
+                File binDirectory = new File(getCatalinaBase(), "/bin/");
+                Process p = processBuilder.directory(binDirectory).start();
+                InputStream is = p.getInputStream();
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    log.info(line);
+                }
+                exitValue = p.waitFor();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            exitValue = p.waitFor();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            try {
+                Thread.sleep(SLEEPTIME);
+            } catch (InterruptedException e) {
+                log.error(e.getMessage(), e);
+            }
+            log.info("Exit-Value ForkedTomcatShutdownHook " + exitValue);
         }
-        try {
-            Thread.sleep(SLEEPTIME);
-        } catch (InterruptedException e) {
-            log.error(e.getMessage(), e);
-        }
-        log.info("Exit-Value ForkedTomcatShutdownHook " + exitValue);
     }
 
     protected String[] getStopSkriptCommand() {

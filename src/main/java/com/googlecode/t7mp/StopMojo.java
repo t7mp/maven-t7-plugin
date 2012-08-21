@@ -38,6 +38,8 @@ import org.apache.maven.plugin.MojoFailureException;
  */
 public final class StopMojo extends AbstractMojo {
 
+    public static final int SLEEP = 3000;
+    
     private PluginLog log;
 
     @Override
@@ -52,7 +54,7 @@ public final class StopMojo extends AbstractMojo {
                 bootstrap.stop();
                 log.info("Cleanup MBean-Server ...");
                 cleanupMBeanServer();
-                Thread.sleep(3000);
+                Thread.sleep(SLEEP);
                 log.info("Bootstrap-instance stopped, MBean-Server cleaned up.");
             } catch (Exception e) {
                 throw new MojoExecutionException("Error stopping the Tomcat with Bootstrap from Plugin-Context", e);

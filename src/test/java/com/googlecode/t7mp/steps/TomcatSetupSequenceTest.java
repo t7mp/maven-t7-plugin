@@ -34,18 +34,21 @@ public class TomcatSetupSequenceTest {
     @Test
     public void testTomcatSetupSequence(){
         TestTomcatSetupSequence sequence = new TestTomcatSetupSequence();
-        Assert.assertEquals("6 Steps expected", 6, sequence.getSteps().size());
+        Assert.assertEquals("7 Steps expected", 7, sequence.getSteps().size());
         Step three = sequence.getSteps().get(0);
         Assert.assertTrue(three instanceof ResolveTomcatStep);
-        Step four = sequence.getSteps().get(1);
+        Step afterThree = sequence.getSteps().get(1);
+        Assert.assertTrue(afterThree instanceof DeleteDocsAndExamplesStep);
+        
+        Step four = sequence.getSteps().get(2);
         Assert.assertTrue(four instanceof CopyConfigResourcesFromClasspathSequence);
-        Step five = sequence.getSteps().get(2);
+        Step five = sequence.getSteps().get(3);
         Assert.assertTrue(five instanceof ConfigFilesSequence);
-        Step six = sequence.getSteps().get(3);
+        Step six = sequence.getSteps().get(4);
         Assert.assertTrue(six instanceof ArtifactDeploymentSequence);
-        Step seven = sequence.getSteps().get(4);
+        Step seven = sequence.getSteps().get(5);
         Assert.assertTrue(seven instanceof WebappSequence);
-        Step eight = sequence.getSteps().get(5);
+        Step eight = sequence.getSteps().get(6);
         Assert.assertTrue(eight instanceof SetSystemPropertiesStep);
     }
     

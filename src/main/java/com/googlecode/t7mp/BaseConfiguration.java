@@ -211,6 +211,13 @@ public class BaseConfiguration implements T7Configuration {
      * @parameter default-value="false"
      */
     protected boolean downloadTomcatExamples = false;
+    
+    /**
+     * 
+     * 
+     * @parameter default-value="1"
+     */
+    protected int instanceCount = 1;
 
     /* (non-Javadoc)
      * @see com.googlecode.t7mp.PluginConfiguration#isTomcatSetAwait()
@@ -550,5 +557,13 @@ public class BaseConfiguration implements T7Configuration {
 
     public void setTomcatArtifact(TomcatArtifact tomcatArtifact) {
         this.tomcatArtifact = tomcatArtifact;
+    }
+
+    public int getInstanceCount() {
+        return instanceCount;
+    }
+
+    public void setInstanceCount(int instanceCount) {
+        this.instanceCount = instanceCount;
     }
 }

@@ -1,6 +1,6 @@
 import java.io.*;
 
-File libDir = new File( basedir, "target/tomcat/lib" );
+File libDir = new File( basedir, "target/tomcat0/lib" );
 
 String[] expectedFiles = {
 	"annotations-api.jar",

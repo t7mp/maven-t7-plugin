@@ -36,15 +36,21 @@ public class DefaultContext implements Context {
 
     protected PluginArtifactResolver artifactResolver;
     protected T7Configuration configuration;
+    protected PluginLog pluginLog;
 
     public DefaultContext(PluginArtifactResolver artifactResolver, T7Configuration configuration) {
+        this(artifactResolver, configuration, new DefaultPluginLog());
+    }
+
+    public DefaultContext(PluginArtifactResolver artifactResolver, T7Configuration configuration, PluginLog pluginLog) {
         this.artifactResolver = artifactResolver;
         this.configuration = configuration;
+        this.pluginLog = pluginLog;
     }
 
     @Override
     public PluginLog getLog() {
-        return new DefaultPluginLog();
+        return this.pluginLog;
     }
 
     @Override

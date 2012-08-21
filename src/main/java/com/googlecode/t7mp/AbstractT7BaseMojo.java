@@ -281,6 +281,13 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
      * @parameter
      */
     protected ConfigurationArtifact configArtifact = null;
+    
+    /**
+     * 
+     * 
+     * @parameter default-value="1"
+     */
+    protected int instanceCount = 1;
 
     public boolean isWebProject() {
         return this.packaging.equals("war");
@@ -570,6 +577,14 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
 
     public void setConfigArtifact(ConfigurationArtifact configurationArtifact) {
         this.configArtifact = configurationArtifact;
+    }
+
+    public int getInstanceCount() {
+        return instanceCount;
+    }
+
+    public void setInstanceCount(int instanceCount) {
+        this.instanceCount = instanceCount;
     }
 
 }

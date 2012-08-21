@@ -43,7 +43,7 @@ public class ChainedArtifactResolver implements PluginArtifactResolver {
                 if (result != null) {
                     break;
                 }
-            //CHECKSTYLE.OFF: Empty catch block
+                //CHECKSTYLE.OFF: Empty catch block
             } catch (ResolutionException e) {
             }
             //CHECKSTYLE.ON: Empty catch block

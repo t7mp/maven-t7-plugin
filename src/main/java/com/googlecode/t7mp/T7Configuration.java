@@ -37,8 +37,12 @@ public interface T7Configuration {
     String getTomcatVersion();
 
     int getTomcatHttpPort();
+    
+    void setTomcatHttpPort(int port);
 
     int getTomcatShutdownPort();
+    
+    void setTomcatShutdownPort(int port);
 
     String getTomcatShutdownCommand();
 
@@ -47,6 +51,8 @@ public interface T7Configuration {
     String getTomcatHostName();
 
     File getCatalinaBase();
+    
+    void setCatalinaBase(File catalinaBase);
 
     File getTomcatConfigDirectory();
 
@@ -85,5 +91,7 @@ public interface T7Configuration {
     boolean isDownloadTomcatExamples();
 
     TomcatArtifact getTomcatArtifact();
+    
+    int getInstanceCount();
 
 }

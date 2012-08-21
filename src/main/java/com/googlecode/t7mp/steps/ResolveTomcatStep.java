@@ -48,16 +48,7 @@ public class ResolveTomcatStep implements Step {
         this.configuration = context.getConfiguration();
         this.artifactResolver = context.getArtifactResolver();
         this.logger = context.getLog();
-        String version = null;
-        String configuredVersion = configuration.getTomcatVersion();
-        if (this.configuration.isDownloadTomcatExamples()) {
-            logger.info("Resolve Tomcat with 'docs' and 'examples'");
-            version = configuredVersion;
-        } else {
-            logger.info("Resolve Tomcat without 'docs' and 'examples'.");
-            version = configuredVersion + ".A";
-        }
-        if (StringUtils.isEmpty(version)) {
+        if (StringUtils.isEmpty(configuration.getTomcatVersion())) {
             throw new TomcatSetupException("Version should not be null or empty.");
         }
 
@@ -65,7 +56,7 @@ public class ResolveTomcatStep implements Step {
         try {
 
             TomcatArtifact tomcatArtifact = configuration.getTomcatArtifact();
-            tomcatArtifact.setVersion(version);
+            tomcatArtifact.setVersion(configuration.getTomcatVersion());
             File resolvedArtifact = artifactResolver.resolveArtifact(tomcatArtifact.getArtifactCoordinates());
             unpackDirectory = getUnpackDirectory();
             ZipUtil.unzip(resolvedArtifact, unpackDirectory);

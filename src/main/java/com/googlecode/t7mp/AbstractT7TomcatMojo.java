@@ -51,7 +51,7 @@ public abstract class AbstractT7TomcatMojo extends AbstractT7BaseMojo implements
     protected Context buildParentContext() {
         ChainedArtifactResolver artifactResolver = new ChainedArtifactResolver();
         artifactResolver.addPluginArtifactResolver(new MyArtifactResolver(this));
-        DefaultContext defaultContext = new DefaultContext(artifactResolver, this);
+        DefaultContext defaultContext = new DefaultContext(artifactResolver, this, new MavenPluginLog(getLog()));
         return defaultContext;
     }
 }
