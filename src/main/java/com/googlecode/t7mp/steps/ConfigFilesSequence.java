@@ -19,8 +19,8 @@ package com.googlecode.t7mp.steps;
 public class ConfigFilesSequence extends DefaultStepSequence {
 
     public ConfigFilesSequence() {
-        this.add(new BuildCatalinaPropertiesFileStep());
-        this.add(new CopyUserConfigStep());
+        this.add( new BuildCatalinaPropertiesFileStep() );
+        this.add( new ResolveConfigurationArtifactStep() );
+        this.add( new CopyUserConfigStep() );
     }
-
 }
