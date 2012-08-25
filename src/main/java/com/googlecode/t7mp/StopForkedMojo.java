@@ -60,7 +60,7 @@ public class StopForkedMojo extends AbstractT7TomcatMojo {
             ProcessBuilder processBuilder = new ProcessBuilder(getStopSkriptCommand());
             int exitValue = -1;
             try {
-                File binDirectory = new File(getCatalinaBase(), "/bin/");
+                File binDirectory = TomcatUtil.getBinDirectory(new File(configuration.getCatalinaBasePath()));
                 Process p = processBuilder.directory(binDirectory).start();
                 InputStream is = p.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));

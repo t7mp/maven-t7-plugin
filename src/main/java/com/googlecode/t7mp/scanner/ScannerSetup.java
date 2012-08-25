@@ -16,10 +16,13 @@
 package com.googlecode.t7mp.scanner;
 
 import java.io.File;
+import java.util.List;
 
-import com.googlecode.t7mp.T7Configuration;
+import com.google.common.collect.Lists;
 import com.googlecode.t7mp.PluginLog;
 import com.googlecode.t7mp.ShutdownHook;
+import com.googlecode.t7mp.Stoppable;
+import com.googlecode.t7mp.T7Configuration;
 
 /**
  * Takes configuration, creates scanners and add them to the shutdownhook.
@@ -33,10 +36,11 @@ public final class ScannerSetup {
         //hide constructor
     }
 
-    public static void configureScanners(ShutdownHook shutdownHook, T7Configuration t7Mojo, PluginLog log) {
+    public static List<Stoppable> configureScanners(ShutdownHook shutdownHook, T7Configuration t7Mojo, PluginLog log) {
+        List<Stoppable> stoppables = Lists.newArrayList();
         if (!t7Mojo.isWebProject()) {
             log.info("Project seems not to be an web-project (packaging 'war'), skip scanner configuration");
-            return;
+            return stoppables;
         }
         for (ScannerConfiguration scannerConfiguration : t7Mojo.getScanners()) {
             scannerConfiguration.setRootDirectory(t7Mojo.getWebappSourceDirectory());
@@ -44,6 +48,7 @@ public final class ScannerSetup {
                     + t7Mojo.getContextPath()));
             Scanner scanner = new Scanner(scannerConfiguration, log);
             scanner.start();
+            stoppables.add(scanner);
             shutdownHook.addScanner(scanner);
         }
         if (t7Mojo.isScanClasses()) {
@@ -54,8 +59,10 @@ public final class ScannerSetup {
             scannerConfiguration.setEndings("%"); // it's all or nothing
             Scanner scanner = new Scanner(scannerConfiguration, log);
             scanner.start();
+            stoppables.add(scanner);
             shutdownHook.addScanner(scanner);
         }
+        return stoppables;
     }
 
 }

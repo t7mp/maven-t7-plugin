@@ -27,10 +27,21 @@
                        <XXXX>${basedir}</XXXX>
                     </systemProperties>
 				</configuration>
-				<!-- <executions> <execution> <id>test-run</id> <goals> <goal>run</goal> 
-					</goals> </execution> -->
-				<!-- <execution> <id>test-stop-server</id> <goals> <goal>stop-server</goal> 
-					</goals> <phase>post-integration-test</phase> </execution> </executions> -->
+                <executions>
+                    <execution>
+                        <id>test-run</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-stop-server</id>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                        <phase>post-integration-test</phase>
+                    </execution>
+                </executions>
 			</plugin>
 		</plugins>
 	</build>

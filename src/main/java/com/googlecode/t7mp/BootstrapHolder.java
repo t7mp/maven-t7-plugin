@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.catalina.startup.Bootstrap;
 
+import com.google.common.collect.Lists;
 import com.googlecode.t7mp.scanner.Scanner;
 import com.googlecode.t7mp.scanner.ScannerSetup;
 import com.googlecode.t7mp.steps.CopyJuliJarStep;
@@ -32,6 +33,7 @@ public class BootstrapHolder {
     public void startBootstrapInstance(MavenPluginContext pluginContext) {
         this.log = pluginContext.getLog();
         this.configuration = pluginContext.getConfiguration();
+        List<Stoppable> stoppables = Lists.newArrayList();
         getSetupStepSequence().execute(pluginContext);
 
         PrintStream originalSystemErr = System.err;
@@ -45,13 +47,16 @@ public class BootstrapHolder {
             System.setErr(catalinaOutputStream);
             bootstrap.init();
             final BootstrapShutdownHook shutdownHook = new BootstrapShutdownHook();
-            ScannerSetup.configureScanners(shutdownHook, configuration, log);
+            List<Stoppable> stoppableScanner = ScannerSetup.configureScanners(shutdownHook, configuration, log);
+            stoppables.addAll(stoppableScanner);
                 bootstrap.start();
                 Runtime.getRuntime().addShutdownHook(shutdownHook);
                 log.info("Tomcat started");
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage(), e);
         }
+        stoppables.add(new StoppableBootstrapAdapter(bootstrap));
+        pluginContext.getMojo().getPluginContext().put(AbstractT7BaseMojo.T7_BOOTSTRAP_CONTEXT_ID, stoppables);
     }
     
     protected StepSequence getSetupStepSequence() {

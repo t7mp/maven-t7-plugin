@@ -18,6 +18,7 @@ package com.googlecode.t7mp.scanner;
 import java.util.Timer;
 
 import com.googlecode.t7mp.PluginLog;
+import com.googlecode.t7mp.Stoppable;
 
 /**
  * Scanner that creates a Timer with a TimerTask.
@@ -25,7 +26,7 @@ import com.googlecode.t7mp.PluginLog;
  * @author Joerg Bellmann
  *
  */
-public final class Scanner {
+public final class Scanner implements Stoppable {
 
     private static final int DEFAULT_DELAY = 10000;
     private static final int MILLIS = 1000;
