@@ -15,7 +15,6 @@
  */
 package com.googlecode.t7mp.steps;
 
-
 /**
  * Combines all steps to prepare the webapp before starting the tomcat.
  * 
@@ -25,8 +24,8 @@ package com.googlecode.t7mp.steps;
 public class WebappSequence extends DefaultStepSequence {
 
     public WebappSequence() {
-        add( new CopyProjectWebappStep() );
-        add( new CopyTestContextXmlStep() );
-        add( new OverwriteWebXmlStep() );
+        add(new CopyProjectWebappStep());
+        add(new CopyTestContextXmlStep());
+        add(new OverwriteWebXmlStep());
     }
 }
