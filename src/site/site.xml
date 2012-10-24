@@ -35,6 +35,11 @@
       <item name="Introduction" href="index.html"/>
       <item name="Goals" href="plugin-info.html"/>
     </menu>
+    
+    <menu name="Examples">
+    	<item name="Simple Usage" href="simple-usage.html"/>
+    	<item name="How to run Integration-Tests" href="how-to-run-integration-test.html"/>
+    </menu>
 
     <menu ref="reports" inherit="bottom"/>
     

@@ -20,7 +20,7 @@
             <pre>&lt;plugin&gt;
     &lt;groupId>com.googlecode.t7mp&lt;/groupId&gt;
     &lt;artifactId>maven-t7-plugin&lt;/artifactId&gt;
-    &lt;version>0.9.10.M6&lt;/version&gt;
+    &lt;version>0.9.10.M8&lt;/version&gt;
 &lt;/plugin&gt;
             </pre>
             <p>Start your build as usual with the following goal:
