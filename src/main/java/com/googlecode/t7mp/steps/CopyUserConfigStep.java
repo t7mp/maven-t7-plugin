@@ -30,6 +30,7 @@ import org.apache.commons.io.IOUtils;
 
 import com.googlecode.t7mp.SetupUtil;
 import com.googlecode.t7mp.PluginLog;
+import com.googlecode.t7mp.T7Configuration;
 import com.googlecode.t7mp.TomcatSetupException;
 import com.googlecode.t7mp.util.CommonsSetupUtil;
 import com.googlecode.t7mp.util.FilesOnlyFileFilter;
@@ -44,6 +45,7 @@ public class CopyUserConfigStep implements Step {
     private File catalinaBaseDir;
     private File userConfigDir;
     private PluginLog log;
+    private T7Configuration configuration;
 
     private final SetupUtil setupUtil = new CommonsSetupUtil();
 
@@ -52,6 +54,7 @@ public class CopyUserConfigStep implements Step {
         // setup fields
         this.catalinaBaseDir = context.getConfiguration().getCatalinaBase();
         this.userConfigDir = context.getConfiguration().getTomcatConfigDirectory();
+        this.configuration = context.getConfiguration();
         this.log = context.getLog();
 
         //
@@ -93,6 +96,7 @@ public class CopyUserConfigStep implements Step {
 
         mergeProperties(defaultCatalinProperties, userCatalinaProperties, getExcludes());
 
+        defaultCatalinProperties.putAll(this.configuration.getSystemProperties());
         writePropertiesToFile(defaultCatalinProperties, defaultConfigFile);
     }
 
