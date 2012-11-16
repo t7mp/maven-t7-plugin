@@ -1,17 +1,12 @@
 /**
  * Copyright (C) 2010-2012 Joerg Bellmann <joerg.bellmann@googlemail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing permissions and limitations under the License.
  */
 package com.googlecode.t7mp;
 
@@ -24,108 +19,91 @@ import java.util.Map;
 import com.googlecode.t7mp.scanner.ScannerConfiguration;
 
 /**
- * 
+ *
  * @author Joerg Bellmann
  *
  */
 public class BaseConfiguration implements T7Configuration {
 
     public static final int DEFAULT_TOMCAT_HTTP_PORT = 8080;
-
     public static final int DEFAULT_TOMCAT_SHUTDOWN_PORT = 8005;
-
     public static final String DEFAULT_CONTEXT_PATH_ROOT = "ROOT";
-
     protected TomcatArtifact tomcatArtifact = new TomcatArtifact();
-
     /**
-     * 
+     *
      * @parameter expression="${t7.tomcatSetAwait}" default-value="true"
-     * 
+     *
      */
     protected boolean tomcatSetAwait = true;
-
     /**
-     * 
+     *
      * @parameter expression="${t7.lookInside}" default-value="false"
-     * 
+     *
      */
     protected boolean lookInside = false;
-
     /**
-     * 
+     *
      * @parameter expression="${t7.resolverUpdateSnapshotsAlways}" default-value="false"
      */
     protected boolean resolverUpdateSnapshotsAllways = false;
-
     /**
-     * 
+     *
      * @parameter expression="${t7.tomcatVersion}" default-value="7.0.29"
      */
     protected String tomcatVersion = TomcatArtifact.DEFAULT_TOMCAT_VERSION;
-
     /**
-     * 
+     *
      * @parameter expression="${t7.tomcatHttpPort}" default-value="8080"
      */
     protected int tomcatHttpPort = DEFAULT_TOMCAT_HTTP_PORT;
-
     /**
-     * 
+     *
      * @parameter expression="${t7.tomcatShutdownPort}" default-value="8005"
      */
     protected int tomcatShutdownPort = DEFAULT_TOMCAT_SHUTDOWN_PORT;
-
     /**
-     * 
+     *
      * @parameter expression="${t7.tomcatShutdownCommand}" default-value="SHUTDOWN"
      */
     protected String tomcatShutdownCommand = "SHUTDOWN";
-
     /**
-     * 
+     *
      * @parameter expression="${t7.tomcatShutdownHost}" default-value="localhost"
-     * 
+     *
      */
     protected String tomcatShutdownHost = "localhost";
-
     /**
-     * 
+     *
      * @parameter expression="${t7.tomcatHostName}" default-value="localhost"
-     * 
+     *
      */
     protected String tomcatHostName = "localhost";
-    
     /**
-     * 
+     *
      * @parameter default-value="${project.build.directory}/tomcat"
      * @readonly // at the moment
-     * 
+     *
      */
     protected File catalinaBase;
-
     /**
-     * 
+     *
      * @parameter expression="${t7.tomcatConfigDirectory}" default-value="${basedir}/src/main/tomcat/conf"
      * @optional
-     * 
+     *
      */
     protected File tomcatConfigDirectory;
-
     /**
-     * 
+     *
      * @parameter expression="${t7.overwriteWebXML}"
      */
     protected File overwriteWebXML;
-
     /**
-     * 
+     *
      * @parameter default-value="${project.build.directory}/${project.build.finalName}"
      * @readonly
-     * 
+     *
      */
     protected File webappOutputDirectory;
-
     /**
      *
      * @parameter expression="${t7.contextPath}" default-value="${project.build.finalName}"
@@ -133,88 +111,78 @@ public class BaseConfiguration implements T7Configuration {
      *
      */
     protected String contextPath = DEFAULT_CONTEXT_PATH_ROOT;
-
     /**
      * @parameter default-value="${project.build.finalName}"
      * @readonly
      */
     protected String buildFinalName = DEFAULT_CONTEXT_PATH_ROOT;
-
     /**
      * @parameter default-value="${basedir}/src/main/webapp"
      * @readonly
      */
     protected File webappSourceDirectory = null;
-
     /**
      * @parameter default-value="${project.packaging}"
-     * 
-     * 
+     *
+     *
      */
     protected String packaging = "war";
-
     /**
-     * 
+     *
      * @parameter expression="${t7.scanClasses}" default-value="false"
      */
     protected boolean scanClasses = false;
-
     /**
      * @parameter default-value="${basedir}/target/classes"
      * @readonly
      */
     protected File webappClassDirectory = null;
-
     /**
-     * @parameter
-     * @optional
+     * @parameter @optional
      */
     protected File contextFile = null;
-
     /**
-     * 
+     *
      * @parameter
      */
     protected ArrayList<WebappArtifact> webapps = new ArrayList<WebappArtifact>();
-
     /**
-     * 
+     *
      * @parameter
      */
     protected Map<String, String> systemProperties = new HashMap<String, String>();
-
     /**
-     * 
+     *
      * @parameter
      */
     protected List<JarArtifact> libs = new ArrayList<JarArtifact>();
-
     /**
-     * 
+     *
      * @parameter
      */
     protected ArrayList<ScannerConfiguration> scanners = new ArrayList<ScannerConfiguration>();
-
     /**
-     * 
+     *
      * @parameter default-value="false"
      */
     protected boolean suspendConsoleOutput = false;
-
     /**
      * @parameter
      */
     protected ConfigurationArtifact configArtifact = null;
-
     /**
-     * 
+     *
      * @parameter default-value="false"
      */
     protected boolean downloadTomcatExamples = false;
-    
     /**
-     * 
-     * 
+     *
+     * @parameter default-value="false"
+     */
+    protected boolean downloadDefaultTomcatWebapps = false;
+    /**
+     *
+     *
      * @parameter default-value="1"
      */
     protected int instanceCount = 1;
@@ -275,6 +243,7 @@ public class BaseConfiguration implements T7Configuration {
         return tomcatHttpPort;
     }
 
+    @Override
     public void setTomcatHttpPort(int tomcatHttpPort) {
         this.tomcatHttpPort = tomcatHttpPort;
     }
@@ -287,6 +256,7 @@ public class BaseConfiguration implements T7Configuration {
         return tomcatShutdownPort;
     }
 
+    @Override
     public void setTomcatShutdownPort(int tomcatShutdownPort) {
         this.tomcatShutdownPort = tomcatShutdownPort;
     }
@@ -314,7 +284,8 @@ public class BaseConfiguration implements T7Configuration {
     public void setTomcatShutdownHost(String tomcatShutdownHost) {
         this.tomcatShutdownHost = tomcatShutdownHost;
     }
-    
+
+    @Override
     public String getTomcatHostName() {
         return tomcatHostName;
     }
@@ -331,6 +302,7 @@ public class BaseConfiguration implements T7Configuration {
         return catalinaBase;
     }
 
+    @Override
     public void setCatalinaBase(File catalinaBase) {
         this.catalinaBase = catalinaBase;
     }
@@ -548,6 +520,18 @@ public class BaseConfiguration implements T7Configuration {
     }
 
     /* (non-Javadoc)
+     * @see com.googlecode.t7mp.PluginConfiguration#isDownloadDefaultTomcatWebapps()
+     */
+    @Override
+    public boolean isDownloadDefaultTomcatWebapps() {
+        return downloadDefaultTomcatWebapps;
+    }
+
+    public void setDownloadDefaultTomcatWebapps(boolean downloadDefaultTomcatWebapps) {
+        this.downloadDefaultTomcatWebapps = downloadDefaultTomcatWebapps;
+    }
+
+    /* (non-Javadoc)
      * @see com.googlecode.t7mp.PluginConfiguration#getTomcatArtifact()
      */
     @Override
@@ -559,6 +543,7 @@ public class BaseConfiguration implements T7Configuration {
         this.tomcatArtifact = tomcatArtifact;
     }
 
+    @Override
     public int getInstanceCount() {
         return instanceCount;
     }
