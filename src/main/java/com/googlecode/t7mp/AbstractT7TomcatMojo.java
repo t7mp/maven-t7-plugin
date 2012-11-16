@@ -20,7 +20,7 @@ import com.googlecode.t7mp.steps.Context;
 import com.googlecode.t7mp.steps.DefaultContext;
 
 /**
- * 
+ *
  * Takes configurations for t7 Tomcat only (no TomEE).
  *
  * @author Joerg Bellmann
@@ -29,10 +29,15 @@ import com.googlecode.t7mp.steps.DefaultContext;
 public abstract class AbstractT7TomcatMojo extends AbstractT7BaseMojo implements T7Configuration {
 
     /**
-     * 
+     *
      * @parameter default-value="false"
      */
     protected boolean downloadTomcatExamples = false;
+
+    /**
+     * @parameter default-value="false"
+     */
+    protected boolean downloadDefaultTomcatWebapps = false;
 
     @Override
     public boolean isDownloadTomcatExamples() {
@@ -41,6 +46,15 @@ public abstract class AbstractT7TomcatMojo extends AbstractT7BaseMojo implements
 
     public void setDownloadTomcatExamples(boolean downloadTomcatExamples) {
         this.downloadTomcatExamples = downloadTomcatExamples;
+    }
+
+    @Override
+    public boolean isDownloadDefaultTomcatWebapps() {
+        return downloadDefaultTomcatWebapps;
+    }
+
+    public void setDownloadDefaultTomcatWebapps(boolean downloadDefaultTomcatWebapps) {
+        this.downloadDefaultTomcatWebapps = downloadDefaultTomcatWebapps;
     }
 
     @Override
