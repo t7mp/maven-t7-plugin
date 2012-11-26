@@ -22,7 +22,7 @@ import java.util.Map;
 import com.googlecode.t7mp.scanner.ScannerConfiguration;
 
 /**
- * 
+ *
  * @author Joerg Bellmann
  *
  */
@@ -37,21 +37,21 @@ public interface T7Configuration {
     String getTomcatVersion();
 
     int getTomcatHttpPort();
-    
+
     void setTomcatHttpPort(int port);
 
     int getTomcatShutdownPort();
-    
+
     void setTomcatShutdownPort(int port);
 
     String getTomcatShutdownCommand();
 
     String getTomcatShutdownHost();
-    
+
     String getTomcatHostName();
 
     File getCatalinaBase();
-    
+
     void setCatalinaBase(File catalinaBase);
 
     File getTomcatConfigDirectory();
@@ -90,8 +90,10 @@ public interface T7Configuration {
 
     boolean isDownloadTomcatExamples();
 
+    boolean isDownloadDefaultTomcatWebapps();
+
     TomcatArtifact getTomcatArtifact();
-    
+
     int getInstanceCount();
 
 }

@@ -19,7 +19,7 @@ package com.googlecode.t7mp.steps;
 /**
  * Combines all steps needed to setting up an tomcat with all configured
  * elements.
- * 
+ *
  * @author Joerg Bellmann
  *
  */
@@ -28,6 +28,7 @@ public class TomcatSetupSequence extends DefaultStepSequence {
     public TomcatSetupSequence() {
         this.add(new ResolveTomcatStep());
         this.add(new DeleteDocsAndExamplesStep());
+        this.add(new DeleteDefaultWebappsStep());
         this.add(new CopyConfigResourcesFromClasspathSequence());
         this.add(new ConfigFilesSequence());
         this.add(new ArtifactDeploymentSequence());
