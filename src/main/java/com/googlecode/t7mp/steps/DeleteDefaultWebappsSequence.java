@@ -32,8 +32,8 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
 
     protected PluginLog logger;
     protected T7Configuration configuration;
-    
-    public DeleteDefaultWebappsSequence(){
+
+    public DeleteDefaultWebappsSequence() {
         add(new DeleteRootWebapp());
         add(new DeleteManagerWebapp());
         add(new DeleteHostManagerWebapp());
@@ -45,20 +45,20 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
     public void execute(Context context) {
         this.logger = context.getLog();
         this.configuration = context.getConfiguration();
-        if(configuration.isDeleteDefaultTomcatWebapps()){
+        if (configuration.isDeleteDefaultTomcatWebapps()) {
             logger.info("Delete all default tomcat webapps");
             try {
                 FileUtils.cleanDirectory(new File(configuration.getCatalinaBase(), "/webapps"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
-            for(Step step : this.sequence){
+        } else {
+            for (Step step : this.sequence) {
                 step.execute(context);
             }
         }
     }
-    
+
     /**
      * 
      * TODO Comment
@@ -74,7 +74,7 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
         @Override
         public void execute(Context context) {
             configuration = context.getConfiguration();
-            if(configuration.isDeleteTomcatDefaultRootWebapp()){
+            if (configuration.isDeleteTomcatDefaultRootWebapp()) {
                 File webappsDirectory = new File(configuration.getCatalinaBase(), "/webapps");
                 try {
                     FileUtils.deleteDirectory(new File(webappsDirectory, "/ROOT"));
@@ -84,7 +84,7 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
             }
         }
     }
-    
+
     /**
      * 
      * TODO Comment
@@ -100,7 +100,7 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
         @Override
         public void execute(Context context) {
             configuration = context.getConfiguration();
-            if(configuration.isDeleteTomcatDefaultManagerWebapp()){
+            if (configuration.isDeleteTomcatDefaultManagerWebapp()) {
                 File webappsDirectory = new File(configuration.getCatalinaBase(), "/webapps");
                 try {
                     FileUtils.deleteDirectory(new File(webappsDirectory, "/manager"));
@@ -110,7 +110,7 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
             }
         }
     }
-    
+
     /**
      * 
      * TODO Comment
@@ -126,17 +126,17 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
         @Override
         public void execute(Context context) {
             configuration = context.getConfiguration();
-            if(configuration.isDeleteTomcatDefaultHostManagerWebapp()){
+            if (configuration.isDeleteTomcatDefaultHostManagerWebapp()) {
                 File webappsDirectory = new File(configuration.getCatalinaBase(), "/webapps");
                 try {
                     FileUtils.deleteDirectory(new File(webappsDirectory, "/host-manager"));
                 } catch (IOException e) {
-                    throw new RuntimeException("Could not delete 'host-manager' directory",e);
+                    throw new RuntimeException("Could not delete 'host-manager' directory", e);
                 }
             }
         }
     }
-    
+
     /**
      * 
      * TODO Comment
@@ -152,7 +152,7 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
         @Override
         public void execute(Context context) {
             configuration = context.getConfiguration();
-            if(configuration.isDeleteTomcatDefaultExamplesWebapp()){
+            if (configuration.isDeleteTomcatDefaultExamplesWebapp()) {
                 File webappsDirectory = new File(configuration.getCatalinaBase(), "/webapps");
                 try {
                     FileUtils.deleteDirectory(new File(webappsDirectory, "/examples"));
@@ -162,7 +162,7 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
             }
         }
     }
-    
+
     /**
      * 
      * TODO Comment
@@ -178,7 +178,7 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
         @Override
         public void execute(Context context) {
             configuration = context.getConfiguration();
-            if(configuration.isDeleteTomcatDefaultDocsWebapp()){
+            if (configuration.isDeleteTomcatDefaultDocsWebapp()) {
                 File webappsDirectory = new File(configuration.getCatalinaBase(), "/webapps");
                 try {
                     FileUtils.deleteDirectory(new File(webappsDirectory, "/docs"));

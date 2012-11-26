@@ -176,13 +176,12 @@ public class BaseConfiguration implements T7Configuration {
      * @parameter default-value="true"
      */
     protected boolean deleteDefaultTomcatWebapps = true;
-    
+
     /**
      * @parameter default-value="false"
      */
     protected boolean deleteTomcatDefaultRootWebapp = false;
-    
-    
+
     /**
      * @parameter default-value="false"
      */
@@ -546,8 +545,8 @@ public class BaseConfiguration implements T7Configuration {
     public boolean isDeleteTomcatDefaultRootWebapp() {
         return deleteTomcatDefaultRootWebapp;
     }
-    
-    public void setDeleteTomcatDefaultRootWebapp(boolean deleteTomcatDefaultRootWebapp){
+
+    public void setDeleteTomcatDefaultRootWebapp(boolean deleteTomcatDefaultRootWebapp) {
         this.deleteTomcatDefaultRootWebapp = deleteTomcatDefaultRootWebapp;
     }
 
@@ -555,8 +554,8 @@ public class BaseConfiguration implements T7Configuration {
     public boolean isDeleteTomcatDefaultManagerWebapp() {
         return deleteTomcatDefaultManagerWebapp;
     }
-    
-    public void setDeleteTomcateDefaultManagerWebapp(boolean deleteTomcatDefaultManagerWebapp){
+
+    public void setDeleteTomcateDefaultManagerWebapp(boolean deleteTomcatDefaultManagerWebapp) {
         this.deleteTomcatDefaultManagerWebapp = deleteTomcatDefaultManagerWebapp;
     }
 
@@ -583,7 +582,7 @@ public class BaseConfiguration implements T7Configuration {
     public void setDeleteTomcatDefaultDocsWebapp(boolean deleteTomcatDefaultDocsWebapp) {
         this.deleteTomcatDefaultDocsWebapp = deleteTomcatDefaultDocsWebapp;
     }
-    
+
     /* (non-Javadoc)
      * @see com.googlecode.t7mp.PluginConfiguration#getTomcatArtifact()
      */
