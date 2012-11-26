@@ -36,6 +36,9 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
     public DeleteDefaultWebappsSequence(){
         add(new DeleteRootWebapp());
         add(new DeleteManagerWebapp());
+        add(new DeleteHostManagerWebapp());
+        add(new DeleteExamplesWebapp());
+        add(new DeleteDocsWebapp());
     }
 
     @Override
@@ -108,66 +111,81 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
         }
     }
     
-//    /**
-//     * 
-//     * TODO Comment
-//     *
-//     * @author Joerg Bellmann
-//     *
-//     */
-//    static class DeleteHostManagerWebapp implements Step {
-//
-//        protected PluginLog logger;
-//        protected T7Configuration configuration;
-//
-//        @Override
-//        public void execute(Context context) {
-//            if(configuration.isDeleteTomcatDefaultHostManagerWebapp()){
-//                File webappsDirectory = new File(configuration.getCatalinaBase(), "/webapps");
-//                FileUtils.deleteDirectory(new File(webappsDirectory, "/host-manager"));
-//            }
-//        }
-//    }
-//    
-//    /**
-//     * 
-//     * TODO Comment
-//     *
-//     * @author Joerg Bellmann
-//     *
-//     */
-//    static class DeleteExamplesWebapp implements Step {
-//
-//        protected PluginLog logger;
-//        protected T7Configuration configuration;
-//
-//        @Override
-//        public void execute(Context context) {
-//            if(configuration.isDeleteTomcatDefaultExamplesWebapp()){
-//                File webappsDirectory = new File(configuration.getCatalinaBase(), "/webapps");
-//                FileUtils.deleteDirectory(new File(webappsDirectory, "/examples"));
-//            }
-//        }
-//    }
-//    
-//    /**
-//     * 
-//     * TODO Comment
-//     *
-//     * @author Joerg Bellmann
-//     *
-//     */
-//    static class DeleteDocsWebapp implements Step {
-//
-//        protected PluginLog logger;
-//        protected T7Configuration configuration;
-//
-//        @Override
-//        public void execute(Context context) {
-//            if(configuration.isDeleteTomcatDefaultDocsWebapp()){
-//                File webappsDirectory = new File(configuration.getCatalinaBase(), "/webapps");
-//                FileUtils.deleteDirectory(new File(webappsDirectory, "/docs"));
-//            }
-//        }
-//    }
+    /**
+     * 
+     * TODO Comment
+     *
+     * @author Joerg Bellmann
+     *
+     */
+    static class DeleteHostManagerWebapp implements Step {
+
+        protected PluginLog logger;
+        protected T7Configuration configuration;
+
+        @Override
+        public void execute(Context context) {
+            configuration = context.getConfiguration();
+            if(configuration.isDeleteTomcatDefaultHostManagerWebapp()){
+                File webappsDirectory = new File(configuration.getCatalinaBase(), "/webapps");
+                try {
+                    FileUtils.deleteDirectory(new File(webappsDirectory, "/host-manager"));
+                } catch (IOException e) {
+                    throw new RuntimeException("Could not delete 'host-manager' directory",e);
+                }
+            }
+        }
+    }
+    
+    /**
+     * 
+     * TODO Comment
+     *
+     * @author Joerg Bellmann
+     *
+     */
+    static class DeleteExamplesWebapp implements Step {
+
+        protected PluginLog logger;
+        protected T7Configuration configuration;
+
+        @Override
+        public void execute(Context context) {
+            configuration = context.getConfiguration();
+            if(configuration.isDeleteTomcatDefaultExamplesWebapp()){
+                File webappsDirectory = new File(configuration.getCatalinaBase(), "/webapps");
+                try {
+                    FileUtils.deleteDirectory(new File(webappsDirectory, "/examples"));
+                } catch (IOException e) {
+                    throw new RuntimeException("Could not delete 'examples' directory", e);
+                }
+            }
+        }
+    }
+    
+    /**
+     * 
+     * TODO Comment
+     *
+     * @author Joerg Bellmann
+     *
+     */
+    static class DeleteDocsWebapp implements Step {
+
+        protected PluginLog logger;
+        protected T7Configuration configuration;
+
+        @Override
+        public void execute(Context context) {
+            configuration = context.getConfiguration();
+            if(configuration.isDeleteTomcatDefaultDocsWebapp()){
+                File webappsDirectory = new File(configuration.getCatalinaBase(), "/webapps");
+                try {
+                    FileUtils.deleteDirectory(new File(webappsDirectory, "/docs"));
+                } catch (IOException e) {
+                    throw new RuntimeException("Could not delete 'docs' directory", e);
+                }
+            }
+        }
+    }
 }
