@@ -26,9 +26,6 @@ String[] expectedFiles = {
 };
 
 String[] expectedWebapps = {
-	"ROOT",
-	"manager",
-	"host-manager"
 };
 
 for ( String expectedFile : expectedFiles )

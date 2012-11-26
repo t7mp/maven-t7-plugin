@@ -27,8 +27,7 @@ public class TomcatSetupSequence extends DefaultStepSequence {
 
     public TomcatSetupSequence() {
         this.add(new ResolveTomcatStep());
-        this.add(new DeleteDocsAndExamplesStep());
-        this.add(new DeleteDefaultWebappsStep());
+        this.add(new DeleteDefaultWebappsSequence());
         this.add(new CopyConfigResourcesFromClasspathSequence());
         this.add(new ConfigFilesSequence());
         this.add(new ArtifactDeploymentSequence());

@@ -2,7 +2,6 @@ import java.io.*;
 
 File libDir = new File( basedir, "target/tomcat/lib" );
 File webappsDir = new File( basedir, "target/tomcat/webapps");
-File confDir = new File(basedir, "target/tomcat/conf");
 
 String[] expectedFiles = {
 	"annotations-api.jar",
@@ -10,7 +9,7 @@ String[] expectedFiles = {
     "catalina-ha.jar",
     "catalina-tribes.jar",
     "catalina.jar",
-    "ecj-3.7.jar",
+    "ecj-3.7.2.jar",
     "el-api.jar",
     "jasper-el.jar",
     "jasper.jar",
@@ -26,10 +25,14 @@ String[] expectedFiles = {
 };
 
 String[] expectedWebapps = {
+	"host-manager",
+	"docs",
+	"examples"
 };
 
-String[] expectedConfigFiles = {
-    "aConfigFile.txt"
+String[] unexpectedWebapps = {
+	"ROOT",
+	"manager"
 };
 
 for ( String expectedFile : expectedFiles )
@@ -52,14 +55,14 @@ for (String expectedWebapp : expectedWebapps )
 	}
 }
 
-for (String expectedConfigFile : expectedConfigFiles )
+for (String unexpectedWebapp : unexpectedWebapps )
 {
-    File file = new File(confDir, expectedConfigFile);
-    System.out.println( "Checking for existence of " + file );
-    if ( !file.isFile() )
-    {
-        throw new Exception("Missing file " + file );
-    }
+	File directory = new File(webappsDir, unexpectedWebapp);
+	System.out.println( "Checking for existence of unexpected " + directory );
+	if ( directory.isDirectory() )
+	{
+		throw new Exception("Unexpected webapp " + directory );
+	}
 }
 
 return true;

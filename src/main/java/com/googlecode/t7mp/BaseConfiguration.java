@@ -170,16 +170,39 @@ public class BaseConfiguration implements T7Configuration {
      * @parameter
      */
     protected ConfigurationArtifact configArtifact = null;
+
     /**
      *
-     * @parameter default-value="false"
+     * @parameter default-value="true"
      */
-    protected boolean downloadTomcatExamples = false;
+    protected boolean deleteDefaultTomcatWebapps = true;
+    
     /**
-     *
      * @parameter default-value="false"
      */
-    protected boolean downloadDefaultTomcatWebapps = false;
+    protected boolean deleteTomcatDefaultRootWebapp = false;
+    
+    
+    /**
+     * @parameter default-value="false"
+     */
+    protected boolean deleteTomcatDefaultManagerWebapp = false;
+
+    /**
+     * @parameter default-value="false" 
+     */
+    protected boolean deleteTomcatDefaultHostManagerWebapp = false;
+
+    /**
+     * @parameter default-value="false"
+     */
+    protected boolean deleteTomcatDefaultExamplesWebapp = false;
+
+    /**
+     * @parameter default-value="false"
+     */
+    protected boolean deleteTomcatDefaultDocsWebapp = false;
+
     /**
      *
      *
@@ -508,29 +531,59 @@ public class BaseConfiguration implements T7Configuration {
     }
 
     /* (non-Javadoc)
-     * @see com.googlecode.t7mp.PluginConfiguration#isDownloadTomcatExamples()
-     */
-    @Override
-    public boolean isDownloadTomcatExamples() {
-        return downloadTomcatExamples;
-    }
-
-    public void setDownloadTomcatExamples(boolean downloadTomcatExamples) {
-        this.downloadTomcatExamples = downloadTomcatExamples;
-    }
-
-    /* (non-Javadoc)
      * @see com.googlecode.t7mp.PluginConfiguration#isDownloadDefaultTomcatWebapps()
      */
     @Override
-    public boolean isDownloadDefaultTomcatWebapps() {
-        return downloadDefaultTomcatWebapps;
+    public boolean isDeleteDefaultTomcatWebapps() {
+        return deleteDefaultTomcatWebapps;
     }
 
     public void setDownloadDefaultTomcatWebapps(boolean downloadDefaultTomcatWebapps) {
-        this.downloadDefaultTomcatWebapps = downloadDefaultTomcatWebapps;
+        this.deleteDefaultTomcatWebapps = downloadDefaultTomcatWebapps;
     }
 
+    @Override
+    public boolean isDeleteTomcatDefaultRootWebapp() {
+        return deleteTomcatDefaultRootWebapp;
+    }
+    
+    public void setDeleteTomcatDefaultRootWebapp(boolean deleteTomcatDefaultRootWebapp){
+        this.deleteTomcatDefaultRootWebapp = deleteTomcatDefaultRootWebapp;
+    }
+
+    @Override
+    public boolean isDeleteTomcatDefaultManagerWebapp() {
+        return deleteTomcatDefaultManagerWebapp;
+    }
+    
+    public void setDeleteTomcateDefaultManagerWebapp(boolean deleteTomcatDefaultManagerWebapp){
+        this.deleteTomcatDefaultManagerWebapp = deleteTomcatDefaultManagerWebapp;
+    }
+
+    public boolean isDeleteTomcatDefaultHostManagerWebapp() {
+        return deleteTomcatDefaultHostManagerWebapp;
+    }
+
+    public void setDeleteTomcatDefaultHostManagerWebapp(boolean deleteTomcatDefaultHostManagerWebapp) {
+        this.deleteTomcatDefaultHostManagerWebapp = deleteTomcatDefaultHostManagerWebapp;
+    }
+
+    public boolean isDeleteTomcatDefaultExamplesWebapp() {
+        return deleteTomcatDefaultExamplesWebapp;
+    }
+
+    public void setDeleteTomcatDefaultExamplesWebapp(boolean deleteTomcatDefaultExamplesWebapp) {
+        this.deleteTomcatDefaultExamplesWebapp = deleteTomcatDefaultExamplesWebapp;
+    }
+
+    public boolean isDeleteTomcatDefaultDocsWebapp() {
+        return deleteTomcatDefaultDocsWebapp;
+    }
+
+    public void setDeleteTomcatDefaultDocsWebapp(boolean deleteTomcatDefaultDocsWebapp) {
+        this.deleteTomcatDefaultDocsWebapp = deleteTomcatDefaultDocsWebapp;
+    }
+    
     /* (non-Javadoc)
      * @see com.googlecode.t7mp.PluginConfiguration#getTomcatArtifact()
      */

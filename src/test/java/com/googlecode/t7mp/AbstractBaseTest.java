@@ -47,7 +47,6 @@ public abstract class AbstractBaseTest {
         configuration.setCatalinaBase(catalinaBase);
         configuration.setTomcatArtifact(tomcatArtifact);
         configuration.setTomcatVersion("7.0.22");
-        configuration.setDownloadTomcatExamples(true);
         //
         chainedArtifactResolver = new ChainedArtifactResolver();
         chainedArtifactResolver.addPluginArtifactResolver(new LocalMavenRepositoryArtifactResolver());

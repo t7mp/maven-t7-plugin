@@ -88,10 +88,18 @@ public interface T7Configuration {
 
     boolean isWebProject();
 
-    boolean isDownloadTomcatExamples();
-
-    boolean isDownloadDefaultTomcatWebapps();
-
+    boolean isDeleteDefaultTomcatWebapps();
+    
+    boolean isDeleteTomcatDefaultRootWebapp();
+    
+    boolean isDeleteTomcatDefaultManagerWebapp();
+    
+    boolean isDeleteTomcatDefaultHostManagerWebapp();
+    
+    boolean isDeleteTomcatDefaultExamplesWebapp();
+    
+    boolean isDeleteTomcatDefaultDocsWebapp();
+    
     TomcatArtifact getTomcatArtifact();
 
     int getInstanceCount();

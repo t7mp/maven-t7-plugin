@@ -37,9 +37,10 @@ public class TomcatSetupSequenceTest {
         Assert.assertEquals("7 Steps expected", 7, sequence.getSteps().size());
         Step three = sequence.getSteps().get(0);
         Assert.assertTrue(three instanceof ResolveTomcatStep);
-        Step afterThree = sequence.getSteps().get(1);
-        Assert.assertTrue(afterThree instanceof DeleteDocsAndExamplesStep);
-        
+//        Step afterThree = sequence.getSteps().get(1);
+//        Assert.assertTrue(afterThree instanceof DeleteDocsAndExamplesStep);
+        Step deleteTomcatWebapps = sequence.getSteps().get(1);
+        Assert.assertTrue(deleteTomcatWebapps instanceof DeleteDefaultWebappsSequence);
         Step four = sequence.getSteps().get(2);
         Assert.assertTrue(four instanceof CopyConfigResourcesFromClasspathSequence);
         Step five = sequence.getSteps().get(3);

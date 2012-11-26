@@ -578,7 +578,7 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
     public void setConfigArtifact(ConfigurationArtifact configurationArtifact) {
         this.configArtifact = configurationArtifact;
     }
-
+    
     public int getInstanceCount() {
         return instanceCount;
     }
