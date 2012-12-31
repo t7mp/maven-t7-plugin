@@ -32,7 +32,12 @@ public class CommonsSetupUtil implements SetupUtil {
 
     @Override
     public void copy(InputStream inputStream, OutputStream outputStream) throws IOException {
-        IOUtils.copy(inputStream, outputStream);
+        try {
+            IOUtils.copy(inputStream, outputStream);
+        } finally {
+            IOUtils.closeQuietly(inputStream);
+            IOUtils.closeQuietly(outputStream);
+        }
     }
 
     @Override
