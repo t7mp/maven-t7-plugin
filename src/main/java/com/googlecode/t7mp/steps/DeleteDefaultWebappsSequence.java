@@ -24,7 +24,7 @@ import com.googlecode.t7mp.PluginLog;
 import com.googlecode.t7mp.T7Configuration;
 
 /**
- * Delete default tomcat apps from webapps directory
+ * Delete default tomcat apps from webapps directory.
  *
  * @author Florian Chiș
  */
@@ -61,7 +61,7 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
 
     /**
      * 
-     * TODO Comment
+     * TODO Comment.
      *
      * @author Joerg Bellmann
      *
@@ -113,7 +113,7 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
 
     /**
      * 
-     * TODO Comment
+     * TODO Comment.
      *
      * @author Joerg Bellmann
      *
@@ -139,7 +139,7 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
 
     /**
      * 
-     * TODO Comment
+     * TODO Comment.
      *
      * @author Joerg Bellmann
      *
@@ -165,7 +165,7 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
 
     /**
      * 
-     * TODO Comment
+     * TODO Comment.
      *
      * @author Joerg Bellmann
      *
