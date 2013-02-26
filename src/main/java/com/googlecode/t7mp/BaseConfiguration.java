@@ -48,7 +48,7 @@ public class BaseConfiguration implements T7Configuration {
     protected boolean resolverUpdateSnapshotsAllways = false;
     /**
      *
-     * @parameter expression="${t7.tomcatVersion}" default-value="7.0.29"
+     * @parameter expression="${t7.tomcatVersion}" default-value="7.0.37"
      */
     protected String tomcatVersion = TomcatArtifact.DEFAULT_TOMCAT_VERSION;
     /**
