@@ -23,8 +23,9 @@ import java.util.UUID;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 
-import com.googlecode.t7mp.T7Configuration;
+import com.googlecode.t7mp.ApacheTomcatArtifact;
 import com.googlecode.t7mp.PluginLog;
+import com.googlecode.t7mp.T7Configuration;
 import com.googlecode.t7mp.TomcatArtifact;
 import com.googlecode.t7mp.TomcatSetupException;
 import com.googlecode.t7mp.configuration.PluginArtifactResolver;
@@ -42,6 +43,7 @@ public class ResolveTomcatStep implements Step {
     protected PluginLog logger;
     protected T7Configuration configuration;
     protected PluginArtifactResolver artifactResolver;
+    private static final String SEVEN_0 = "7.0.";
 
     @Override
     public void execute(Context context) {
@@ -55,7 +57,22 @@ public class ResolveTomcatStep implements Step {
         File unpackDirectory = null;
         try {
 
-            TomcatArtifact tomcatArtifact = configuration.getTomcatArtifact();
+            // #74
+            String tomcatVersion = configuration.getTomcatVersion();
+            TomcatArtifact tomcatArtifact = null;
+            if (tomcatVersion.startsWith(SEVEN_0)) {
+                String minorVersion = tomcatVersion.substring(SEVEN_0.length());
+                if (Integer.valueOf(minorVersion).intValue() >= 35) {
+                    tomcatArtifact = new ApacheTomcatArtifact();
+                } else {
+                    tomcatArtifact = new TomcatArtifact();
+                }
+            } else {
+                tomcatArtifact = new TomcatArtifact();
+            }
+
+            logger.debug("Resolving " + tomcatArtifact.toString());
+            //tomcatArtifact = configuration.getTomcatArtifact();
             tomcatArtifact.setVersion(configuration.getTomcatVersion());
             File resolvedArtifact = artifactResolver.resolveArtifact(tomcatArtifact.getArtifactCoordinates());
             unpackDirectory = getUnpackDirectory();
