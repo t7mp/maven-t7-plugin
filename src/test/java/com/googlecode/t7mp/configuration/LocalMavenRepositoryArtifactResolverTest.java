@@ -19,6 +19,7 @@ import java.io.File;
 
 import junit.framework.Assert;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.googlecode.t7mp.TomcatArtifact;
@@ -28,6 +29,7 @@ import com.googlecode.t7mp.TomcatArtifact;
  * @author Joerg Bellmann
  *
  */
+@Ignore
 public class LocalMavenRepositoryArtifactResolverTest {
 
     @Test

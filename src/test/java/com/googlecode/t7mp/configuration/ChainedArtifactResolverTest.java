@@ -18,6 +18,7 @@ package com.googlecode.t7mp.configuration;
 import java.io.File;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -25,6 +26,7 @@ import org.junit.Test;
  * @author Joerg Bellmann
  *
  */
+@Ignore
 public class ChainedArtifactResolverTest {
 
     @Test(expected = ResolutionException.class)

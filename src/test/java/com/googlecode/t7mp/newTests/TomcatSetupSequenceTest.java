@@ -15,6 +15,7 @@
  */
 package com.googlecode.t7mp.newTests;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.googlecode.t7mp.AbstractBaseTest;
@@ -27,6 +28,7 @@ import com.googlecode.t7mp.steps.TomcatSetupSequence;
  * @author Joerg Bellmann
  *
  */
+@Ignore
 public class TomcatSetupSequenceTest extends AbstractBaseTest {
 
     @Test

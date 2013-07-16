@@ -15,6 +15,7 @@
  */
 package com.googlecode.t7mp.newTests;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.googlecode.t7mp.AbstractBaseTest;
@@ -26,7 +27,7 @@ import com.googlecode.t7mp.steps.ResolveTomcatStep;
  * @author Joerg Bellmann
  *
  */
-//@Ignore
+@Ignore
 public class ResolveTomcatStepTest extends AbstractBaseTest {
 
     @Test
