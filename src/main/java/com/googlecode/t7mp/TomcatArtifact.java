@@ -33,7 +33,11 @@ public class TomcatArtifact extends AbstractArtifact {
     }
 
     public TomcatArtifact(String version) {
-        super(TOMCAT_GROUPID, TOMCAT_ARTIFACTID, version, null, TOMCAT_TYPE);
+        this(TOMCAT_GROUPID, TOMCAT_ARTIFACTID, version, TOMCAT_TYPE);
+    }
+
+    public TomcatArtifact(String groupId, String artifactId, String version, String type) {
+        super(groupId, artifactId, version, null, type);
     }
 
     @Override
