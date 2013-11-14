@@ -179,7 +179,7 @@
                 <version>0.9</version>
                 <configuration>
                     <message>Generated site for ${project.artifactId} ${project.version}</message>
-                    <path>site-plugin</path>
+                    <path>site</path>
                     <merge>true</merge>
                     <server>github</server>
                 </configuration>
