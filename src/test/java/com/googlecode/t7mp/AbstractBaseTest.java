@@ -16,6 +16,7 @@
 package com.googlecode.t7mp;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -27,29 +28,30 @@ import com.googlecode.t7mp.configuration.LocalMavenRepositoryArtifactResolver;
 /**
  * 
  * @author Joerg Bellmann
- *
+ * 
  */
 public abstract class AbstractBaseTest {
 
-    @Rule
-    public static TemporaryFolder tempFolders = new TemporaryFolder();
+	@Rule
+	public TemporaryFolder tempFolders = new TemporaryFolder();
 
-    protected BaseConfiguration configuration;
+	protected BaseConfiguration configuration;
 
-    protected ChainedArtifactResolver chainedArtifactResolver;
+	protected ChainedArtifactResolver chainedArtifactResolver;
 
-    @Before
-    public void setUp() {
-        //
-        configuration = new BaseConfiguration();
-        TomcatArtifact tomcatArtifact = new TomcatArtifact();
-        File catalinaBase = tempFolders.newFolder("catalinaBase");
-        configuration.setCatalinaBase(catalinaBase);
-        configuration.setTomcatArtifact(tomcatArtifact);
-        configuration.setTomcatVersion("7.0.22");
-        //
-        chainedArtifactResolver = new ChainedArtifactResolver();
-        chainedArtifactResolver.addPluginArtifactResolver(new LocalMavenRepositoryArtifactResolver());
-    }
+	@Before
+	public void setUp() throws IOException {
+		//
+		configuration = new BaseConfiguration();
+		TomcatArtifact tomcatArtifact = new TomcatArtifact();
+		File catalinaBase = tempFolders.newFolder("catalinaBase");
+		configuration.setCatalinaBase(catalinaBase);
+		configuration.setTomcatArtifact(tomcatArtifact);
+		configuration.setTomcatVersion("7.0.22");
+		//
+		chainedArtifactResolver = new ChainedArtifactResolver();
+		chainedArtifactResolver
+				.addPluginArtifactResolver(new LocalMavenRepositoryArtifactResolver());
+	}
 
 }

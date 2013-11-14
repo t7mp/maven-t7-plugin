@@ -19,11 +19,27 @@
 <project name="t7mp - A Tomcat 7 Maven Plugin" xmlns="http://maven.apache.org/DECORATION/1.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+    <bannerLeft>
+        <name>Tomcat 7 Maven Plugin</name>
+        <href>#</href>
+    </bannerLeft>
     <skin>
         <groupId>org.apache.maven.skins</groupId>
         <artifactId>maven-fluido-skin</artifactId>
-        <version>1.2.2</version>
+        <version>1.3.0</version>
     </skin>
+        <custom>
+        <fluidoSkin>
+            <topBarEnabled>false</topBarEnabled>
+            <sideBarEnabled>true</sideBarEnabled>
+
+            <gitHub>
+                <projectId>t7mp/maven-t7-plugin</projectId>
+                <ribbonOrientation>right</ribbonOrientation>
+                <ribbonColor>black</ribbonColor>
+            </gitHub>
+        </fluidoSkin>
+    </custom>
     <!--
     <publishDate position="right"/>
     <version position="right"/>
@@ -40,19 +56,12 @@
     	<item name="Simple Usage" href="simple-usage.html"/>
     	<item name="How to run Integration-Tests" href="how-to-run-integration-test.html"/>
     </menu>
-
-    <menu ref="reports" inherit="bottom"/>
     
     <menu name="Get Involved">
         <item name="Issues" href="issue-tracking.html"/>
         <item name="Team" href="team-list.html"/>
     </menu>
+    
+    <menu ref="reports" inherit="bottom"/>
   </body>
-  
-  <custom>
-    <fluidoSkin>
-        <topBarEnabled>true</topBarEnabled>
-        <sideBarEnabled>false</sideBarEnabled>
-    </fluidoSkin>
-  </custom>
 </project>

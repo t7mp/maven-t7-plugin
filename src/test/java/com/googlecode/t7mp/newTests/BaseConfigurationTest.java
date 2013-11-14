@@ -16,6 +16,7 @@
 package com.googlecode.t7mp.newTests;
 
 import java.io.File;
+import java.io.IOException;
 
 import junit.framework.Assert;
 
@@ -29,29 +30,30 @@ import com.googlecode.t7mp.BaseConfiguration;
 /**
  * 
  * @author Joerg Bellmann
- *
+ * 
  */
 public class BaseConfigurationTest {
 
-    @Rule
-    public static TemporaryFolder folders = new TemporaryFolder();
+	@Rule
+	public TemporaryFolder folders = new TemporaryFolder();
 
-    private File catalinaBaseDirectory = null;
+	private File catalinaBaseDirectory = null;
 
-    @Before
-    public void setUp() {
-        catalinaBaseDirectory = folders.newFolder("catalinaBase");
-    }
+	@Before
+	public void setUp() throws IOException {
+		catalinaBaseDirectory = folders.newFolder("catalinaBase");
+	}
 
-    @Test
-    public void testBaseconfiguration() {
-        BaseConfiguration configuration = new BaseConfiguration();
-        configuration.setCatalinaBase(catalinaBaseDirectory);
-        Assert.assertEquals(8080, configuration.getTomcatHttpPort());
-        Assert.assertEquals(8005, configuration.getTomcatShutdownPort());
-        Assert.assertEquals(BaseConfiguration.DEFAULT_CONTEXT_PATH_ROOT, configuration.getBuildFinalName());
-        Assert.assertNotNull(configuration.getCatalinaBase());
-        Assert.assertEquals("7.0.27", configuration.getTomcatVersion());
-    }
+	@Test
+	public void testBaseconfiguration() {
+		BaseConfiguration configuration = new BaseConfiguration();
+		configuration.setCatalinaBase(catalinaBaseDirectory);
+		Assert.assertEquals(8080, configuration.getTomcatHttpPort());
+		Assert.assertEquals(8005, configuration.getTomcatShutdownPort());
+		Assert.assertEquals(BaseConfiguration.DEFAULT_CONTEXT_PATH_ROOT,
+				configuration.getBuildFinalName());
+		Assert.assertNotNull(configuration.getCatalinaBase());
+		Assert.assertEquals("7.0.27", configuration.getTomcatVersion());
+	}
 
 }

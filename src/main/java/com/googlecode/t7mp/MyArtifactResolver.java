@@ -21,79 +21,111 @@ import java.util.List;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.factory.ArtifactFactory;
 import org.apache.maven.artifact.repository.ArtifactRepository;
-import org.apache.maven.artifact.resolver.ArtifactNotFoundException;
-import org.apache.maven.artifact.resolver.ArtifactResolutionException;
-import org.apache.maven.artifact.resolver.ArtifactResolver;
 import org.apache.maven.artifact.versioning.VersionRange;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.sonatype.aether.RepositorySystem;
+import org.sonatype.aether.RepositorySystemSession;
+import org.sonatype.aether.repository.RemoteRepository;
+import org.sonatype.aether.resolution.ArtifactRequest;
+import org.sonatype.aether.resolution.ArtifactResult;
+import org.sonatype.aether.util.artifact.DefaultArtifact;
 
-import com.googlecode.t7mp.configuration.Artifacts;
 import com.googlecode.t7mp.configuration.PluginArtifactResolver;
 import com.googlecode.t7mp.configuration.ResolutionException;
 
 /**
  * Uses Maven-API to resolve the Artifacts.
  * 
- *
+ * 
  */
 public class MyArtifactResolver implements PluginArtifactResolver {
 
-    private final ArtifactResolver resolver;
-    private final ArtifactFactory factory;
-    private final ArtifactRepository local;
-    private final List<ArtifactRepository> remoteRepositories;
+	// private final ArtifactResolver resolver;
+	private final ArtifactFactory factory;
+	private final ArtifactRepository local;
+	// private final List<ArtifactRepository> remoteRepositories;
+	private final List<RemoteRepository> remoteRepositories;
+	private RepositorySystem repositorySystem;
+	private RepositorySystemSession repositorySystemSession;
 
-    public MyArtifactResolver(AbstractT7BaseMojo t7BaseMojo) {
-        this.remoteRepositories = t7BaseMojo.getRemoteRepos();
-        this.local = t7BaseMojo.getLocal();
-        this.resolver = t7BaseMojo.getResolver();
-        this.factory = t7BaseMojo.getFactory();
-    }
+	public MyArtifactResolver(AbstractT7BaseMojo t7BaseMojo) {
+		// this.remoteRepositories = t7BaseMojo.getRemoteRepos();
+		this.remoteRepositories = t7BaseMojo.getRemoteRepositories();
+		this.repositorySystem = t7BaseMojo.getRepositorySystem();
+		this.repositorySystemSession = t7BaseMojo.getRepositorySystemSession();
+		this.local = t7BaseMojo.getLocal();
+		// this.resolver = t7BaseMojo.getResolver();
+		this.factory = t7BaseMojo.getFactory();
+	}
 
-    /**
-     * resolves an Artifact from the repositorys.
-     * 
-     * @param groupId - Artifact GroupId
-     * @param artifactId - Artifact Id
-     * @param version - Artifact Version
-     * @param classifier - Artifact Version
-     * @param type - Artifact Type
-     * @param scope - Artifact Scope
-     * @return
-     * @throws MojoExecutionException
-     */
-    public Artifact resolve(String groupId, String artifactId, String version, String classifier, String type, String scope) throws MojoExecutionException {
-        Artifact artifact = factory.createDependencyArtifact(groupId, artifactId, VersionRange.createFromVersion(version), type, classifier,
-                Artifact.SCOPE_COMPILE);
-        try {
-            resolver.resolve(artifact, remoteRepositories, local);
-        } catch (ArtifactResolutionException e) {
-            throw new MojoExecutionException(e.getMessage(), e);
-        } catch (ArtifactNotFoundException e) {
-            throw new MojoExecutionException(e.getMessage(), e);
-        }
-        return artifact;
-    }
+	/**
+	 * resolves an Artifact from the repositories.
+	 * 
+	 * @param groupId
+	 *            - Artifact GroupId
+	 * @param artifactId
+	 *            - Artifact Id
+	 * @param version
+	 *            - Artifact Version
+	 * @param classifier
+	 *            - Artifact Version
+	 * @param type
+	 *            - Artifact Type
+	 * @param scope
+	 *            - Artifact Scope
+	 * @return
+	 * @throws MojoExecutionException
+	 */
+	public Artifact resolve(String groupId, String artifactId, String version,
+			String classifier, String type, String scope)
+			throws MojoExecutionException {
+		Artifact artifact = factory.createDependencyArtifact(groupId,
+				artifactId, VersionRange.createFromVersion(version), type,
+				classifier, Artifact.SCOPE_COMPILE);
+		try {
+			throw new RuntimeException("Not yet implemented");
+			// resolver.resolve(artifact, remoteRepositories, local);
+			// } catch (ArtifactResolutionException e) {
+			// throw new MojoExecutionException(e.getMessage(), e);
+			// } catch (ArtifactNotFoundException e) {
+			// throw new MojoExecutionException(e.getMessage(), e);
+		} finally {
 
-    public Artifact resolveJar(String groupId, String artifactId, String version, String classifier) throws MojoExecutionException {
-        return resolve(groupId, artifactId, version, classifier, "jar", Artifact.SCOPE_COMPILE);
-    }
+		}
+		// return artifact;
+	}
 
-    public Artifact resolveWar(String groupId, String artifactId, String version, String classifier) throws MojoExecutionException {
-        return resolve(groupId, artifactId, version, classifier, "war", Artifact.SCOPE_COMPILE);
-    }
+	public Artifact resolveJar(String groupId, String artifactId,
+			String version, String classifier) throws MojoExecutionException {
+		return resolve(groupId, artifactId, version, classifier, "jar",
+				Artifact.SCOPE_COMPILE);
+	}
 
-    @Override
-    public File resolveArtifact(String coordinates) throws ResolutionException {
-        AbstractArtifact artifact = Artifacts.fromCoordinates(coordinates);
-        Artifact resolvedArtifact = null;
-        try {
-            resolvedArtifact = resolve(artifact.getGroupId(), artifact.getArtifactId(), artifact.getVersion(), artifact.getClassifier(), artifact.getType(),
-                    null);
-        } catch (MojoExecutionException e) {
-            throw new ResolutionException(e.getMessage(), e);
-        }
+	public Artifact resolveWar(String groupId, String artifactId,
+			String version, String classifier) throws MojoExecutionException {
+		return resolve(groupId, artifactId, version, classifier, "war",
+				Artifact.SCOPE_COMPILE);
+	}
 
-        return resolvedArtifact.getFile();
-    }
+	@Override
+	public File resolveArtifact(String coordinates) throws ResolutionException {
+		ArtifactRequest artifactRequest = new ArtifactRequest();
+		artifactRequest.setArtifact(new DefaultArtifact(coordinates));
+		artifactRequest.setRepositories(remoteRepositories);
+
+		ArtifactResult resolvedArtifact = null;
+		try {
+
+			resolvedArtifact = repositorySystem.resolveArtifact(
+					repositorySystemSession, artifactRequest);
+			// resolvedArtifact = resolve(artifact.getGroupId(),
+			// artifact.getArtifactId(), artifact.getVersion(),
+			// artifact.getClassifier(), artifact.getType(), null);
+		} catch (org.sonatype.aether.resolution.ArtifactResolutionException e) {
+			throw new ResolutionException(e.getMessage(), e);
+		}
+
+		return resolvedArtifact.getArtifact().getFile();
+
+	}
 }

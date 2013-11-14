@@ -56,15 +56,15 @@
     </developers>
 
     <prerequisites>
-        <maven>2.2</maven>
+        <maven>3.0</maven>
     </prerequisites>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.version>2.2.1</maven.version>
-        <tomcat.version>7.0.26</tomcat.version>
+        <maven.version>3.0</maven.version>
+        <tomcat.version>7.0.47</tomcat.version>
         <plexus.version>1.5.4</plexus.version>
-        <powermock.version>1.4.11</powermock.version>
+        <powermock.version>1.5.1</powermock.version>
         <velocity.version>1.6.4</velocity.version>
         <slf4j.version>1.6.4</slf4j.version>
     </properties>
@@ -74,8 +74,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.2</version>
+                <version>3.3</version>
                 <configuration>
+                    <skipDeploy>true</skipDeploy>
                     <reportPlugins>
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
@@ -164,11 +165,37 @@
                         </plugin>
                     </reportPlugins>
                 </configuration>
+				<dependencies>
+					<dependency>
+						<groupId>net.ju-n.maven.doxia</groupId>
+						<artifactId>doxia-module-markdown</artifactId>
+						<version>1.0.0</version>
+					</dependency>
+				</dependencies>
+            </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.9</version>
+                <configuration>
+                    <message>Generated site for ${project.artifactId} ${project.version}</message>
+                    <path>site-plugin</path>
+                    <merge>true</merge>
+                    <server>github</server>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>site-deploy</phase>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
+                <version>3.1</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                     <source>1.6</source>
@@ -225,7 +252,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12</version>
+                <version>2.15</version>
                 <configuration>
                     <excludes>
                         <exclude>**/Abstract*.java</exclude>
@@ -280,10 +307,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-plugin-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.0</version>
                 <configuration>
                     <goalPrefix>t7</goalPrefix>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>generated-helpmojo</id>
+                        <goals>
+                            <goal>helpmojo</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
@@ -322,6 +357,7 @@
             <artifactId>maven-plugin-api</artifactId>
             <version>${maven.version}</version>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-project</artifactId>
@@ -336,7 +372,7 @@
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-artifact-manager</artifactId>
             <version>${maven.version}</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-archiver</artifactId>
@@ -347,19 +383,19 @@
             <!-- required in all cases -->
             <groupId>org.sonatype.aether</groupId>
             <artifactId>aether-api</artifactId>
-            <version>1.8</version>
+            <version>1.13.1</version>
         </dependency>
         <dependency>
             <!-- might be superfluous depending on your use case -->
             <groupId>org.sonatype.aether</groupId>
             <artifactId>aether-util</artifactId>
-            <version>1.8</version>
+            <version>1.13.1</version>
         </dependency>
 
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>12.0.1</version>
+            <version>14.0.1</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
@@ -369,7 +405,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-compress</artifactId>
-            <version>1.2</version>
+            <version>1.6</version>
         </dependency>
         <!-- TOMCAT -->
         <dependency>
@@ -387,7 +423,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.8.2</version>
+            <version>4.11</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -405,7 +441,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
-            <version>1.9.0</version>
+            <version>1.9.5</version>
             <scope>test</scope>
         </dependency>
         <dependency>
