@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd-cpd>
+<duplication lines="33" tokens="139">
+<file line="100" path="/home/ruben/.jenkins/workspace/maven-t7-plugin/src/main/java/com/googlecode/t7mp/BootstrapHolder.java"/>
+<file line="46" path="/home/ruben/.jenkins/workspace/maven-t7-plugin/src/main/java/com/googlecode/t7mp/TomcatShutdownHook.java"/>
+<codefragment>
+<![CDATA[
+        @Override
+        public void addScanner(Scanner scanner) {
+            this.scanners.add(scanner);
+        }
+
+        @Override
+        public void run() {
+            log.info("Stopping Tomcat ...");
+            stopScanners();
+            if (bootstrap != null) {
+                try {
+                    bootstrap.stop();
+                    bootstrap = null;
+                    log.info("Tomcat stopped");
+                    Thread.sleep(SLEEPTIME);
+                } catch (Exception e) {
+                    log.error(e.getMessage(), e);
+                }
+            }
+            if (catalinaOutPrintStream != null) {
+                catalinaOutPrintStream.flush();
+                catalinaOutPrintStream.close();
+                System.setErr(catalinaOutPrintStream.getOriginalSystemErr());
+            }
+        }
+
+        @Override
+        public void stopScanners() {
+            for (Scanner scanner : scanners) {
+                scanner.stop();
+            }
+        }
+    }
+]]>
+</codefragment>
+</duplication>
+<duplication lines="47" tokens="129">
+<file line="79" path="/home/ruben/.jenkins/workspace/maven-t7-plugin/src/main/java/com/googlecode/t7mp/AbstractT7TomcatMojo.java"/>
+<file line="542" path="/home/ruben/.jenkins/workspace/maven-t7-plugin/src/main/java/com/googlecode/t7mp/BaseConfiguration.java"/>
+<codefragment>
+<![CDATA[
+    }
+
+    @Override
+    public boolean isDeleteTomcatDefaultRootWebapp() {
+        return deleteTomcatDefaultRootWebapp;
+    }
+
+    public void setDeleteTomcatDefaultRootWebapp(boolean deleteTomcatDefaultRootWebapp) {
+        this.deleteTomcatDefaultRootWebapp = deleteTomcatDefaultRootWebapp;
+    }
+
+    @Override
+    public boolean isDeleteTomcatDefaultManagerWebapp() {
+        return deleteTomcatDefaultManagerWebapp;
+    }
+
+    public void setDeleteTomcateDefaultManagerWebapp(boolean deleteTomcatDefaultManagerWebapp) {
+        this.deleteTomcatDefaultManagerWebapp = deleteTomcatDefaultManagerWebapp;
+    }
+
+    public boolean isDeleteTomcatDefaultHostManagerWebapp() {
+        return deleteTomcatDefaultHostManagerWebapp;
+    }
+
+    public void setDeleteTomcatDefaultHostManagerWebapp(boolean deleteTomcatDefaultHostManagerWebapp) {
+        this.deleteTomcatDefaultHostManagerWebapp = deleteTomcatDefaultHostManagerWebapp;
+    }
+
+    public boolean isDeleteTomcatDefaultExamplesWebapp() {
+        return deleteTomcatDefaultExamplesWebapp;
+    }
+
+    public void setDeleteTomcatDefaultExamplesWebapp(boolean deleteTomcatDefaultExamplesWebapp) {
+        this.deleteTomcatDefaultExamplesWebapp = deleteTomcatDefaultExamplesWebapp;
+    }
+
+    public boolean isDeleteTomcatDefaultDocsWebapp() {
+        return deleteTomcatDefaultDocsWebapp;
+    }
+
+    public void setDeleteTomcatDefaultDocsWebapp(boolean deleteTomcatDefaultDocsWebapp) {
+        this.deleteTomcatDefaultDocsWebapp = deleteTomcatDefaultDocsWebapp;
+    }
+
+    @Override
+    public TomcatArtifact getTomcatArtifact() {
+        return new TomcatArtifact();
+]]>
+</codefragment>
+</duplication>
+<duplication lines="19" tokens="112">
+<file line="47" path="/home/ruben/.jenkins/workspace/maven-t7-plugin/src/main/java/com/googlecode/t7mp/ForkedTomcatShutdownHook.java"/>
+<file line="64" path="/home/ruben/.jenkins/workspace/maven-t7-plugin/src/main/java/com/googlecode/t7mp/StopForkedMojo.java"/>
+<codefragment>
+<![CDATA[
+            Process p = processBuilder.directory(this.binDirectory).start();
+            InputStream is = p.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String line;
+            while ((line = br.readLine()) != null) {
+                log.info(line);
+            }
+            exitValue = p.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            Thread.sleep(SLEEPTIME);
+        } catch (InterruptedException e) {
+            log.error(e.getMessage(), e);
+        }
+        log.debug("Exit-Value ForkedTomcatShutdownHook " + exitValue);
+]]>
+</codefragment>
+</duplication>
+</pmd-cpd>

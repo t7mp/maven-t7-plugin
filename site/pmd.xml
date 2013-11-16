@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.3" timestamp="2013-11-16T20:49:41.188">
+<file name="/home/ruben/.jenkins/workspace/maven-t7-plugin/src/main/java/com/googlecode/t7mp/InstanceConfigurationUtil.java">
+<violation beginline="63" endline="63" begincolumn="44" endcolumn="83" rule="IntegerInstantiation" ruleset="Migration Rules" package="com.googlecode.t7mp" class="InstanceConfigurationUtil" method="validatePorts" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#IntegerInstantiation" priority="2">
+Avoid instantiating Integer objects. Call Integer.valueOf() instead.
+</violation>
+<violation beginline="66" endline="66" begincolumn="43" endcolumn="82" rule="IntegerInstantiation" ruleset="Migration Rules" package="com.googlecode.t7mp" class="InstanceConfigurationUtil" method="validatePorts" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#IntegerInstantiation" priority="2">
+Avoid instantiating Integer objects. Call Integer.valueOf() instead.
+</violation>
+<violation beginline="69" endline="69" begincolumn="44" endcolumn="87" rule="IntegerInstantiation" ruleset="Migration Rules" package="com.googlecode.t7mp" class="InstanceConfigurationUtil" method="validatePorts" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#IntegerInstantiation" priority="2">
+Avoid instantiating Integer objects. Call Integer.valueOf() instead.
+</violation>
+<violation beginline="72" endline="72" begincolumn="43" endcolumn="86" rule="IntegerInstantiation" ruleset="Migration Rules" package="com.googlecode.t7mp" class="InstanceConfigurationUtil" method="validatePorts" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#IntegerInstantiation" priority="2">
+Avoid instantiating Integer objects. Call Integer.valueOf() instead.
+</violation>
+</file>
+<file name="/home/ruben/.jenkins/workspace/maven-t7-plugin/src/main/java/com/googlecode/t7mp/MyArtifactResolver.java">
+<violation beginline="45" endline="45" begincolumn="42" endcolumn="46" rule="UnusedPrivateField" ruleset="Unused Code Rules" package="com.googlecode.t7mp" class="MyArtifactResolver" variable="local" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateField" priority="3">
+Avoid unused private fields such as 'local'.
+</violation>
+<violation beginline="82" endline="82" begincolumn="26" endcolumn="33" rule="UnusedLocalVariable" ruleset="Unused Code Rules" package="com.googlecode.t7mp" class="MyArtifactResolver" method="resolve" variable="artifact" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedLocalVariable" priority="3">
+Avoid unused local variables such as 'artifact'.
+</violation>
+<violation beginline="92" endline="94" begincolumn="19" endcolumn="17" rule="EmptyFinallyBlock" ruleset="Basic Rules" package="com.googlecode.t7mp" class="MyArtifactResolver" method="resolve" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyFinallyBlock" priority="3">
+Avoid empty finally blocks
+</violation>
+</file>
+<file name="/home/ruben/.jenkins/workspace/maven-t7-plugin/src/main/java/com/googlecode/t7mp/configuration/ChainedArtifactResolver.java">
+<violation beginline="47" endline="48" begincolumn="15" endcolumn="13" rule="EmptyCatchBlock" ruleset="Basic Rules" package="com.googlecode.t7mp.configuration" class="ChainedArtifactResolver" method="resolveArtifact" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+<file name="/home/ruben/.jenkins/workspace/maven-t7-plugin/src/main/java/com/googlecode/t7mp/steps/DeleteDefaultWebappsSequence.java">
+<violation beginline="51" endline="51" begincolumn="84" endcolumn="93" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer Rules" package="com.googlecode.t7mp.steps" class="DeleteDefaultWebappsSequence" method="execute" externalInfoUrl="http://pmd.sourceforge.net/rules/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot;/webapps&quot; appears 6 times in this file; the first occurrence is on line 51
+</violation>
+</file>
+<file name="/home/ruben/.jenkins/workspace/maven-t7-plugin/src/main/java/com/googlecode/t7mp/util/CatalinaOutPrintStream.java">
+<violation beginline="65" endline="67" begincolumn="12" endcolumn="5" rule="UselessOverridingMethod" ruleset="Basic Rules" package="com.googlecode.t7mp.util" class="CatalinaOutPrintStream" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UselessOverridingMethod" priority="3">
+Overriding method merely calls super
+</violation>
+</file>
+</pmd>
