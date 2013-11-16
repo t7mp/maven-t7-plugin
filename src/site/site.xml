@@ -54,7 +54,7 @@
     
     <menu name="Examples">
     	<item name="Simple Usage" href="simple-usage.html"/>
-    	<item name="Setting Systemproperties" href="systemproperties.html"
+    	<item name="Setting Systemproperties" href="systemproperties.html"/>
     	<item name="How to run Integration-Tests" href="how-to-run-integration-test.html"/>
     </menu>
     
