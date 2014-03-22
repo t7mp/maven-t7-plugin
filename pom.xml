@@ -292,6 +292,11 @@
                     <mavenExecutorId>forked-path</mavenExecutorId>
                 </configuration>
             </plugin>
+            <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-versions-plugin</artifactId>
+            	<version>2.1</version>
+            </plugin>
         </plugins>
     </build>
 
