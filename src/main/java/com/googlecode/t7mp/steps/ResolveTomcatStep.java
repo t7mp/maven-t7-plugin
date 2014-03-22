@@ -18,6 +18,7 @@ package com.googlecode.t7mp.steps;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
+
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
@@ -34,9 +35,8 @@ import com.googlecode.t7mp.util.ZipUtil;
 
 /**
  * TODO Comment.
- * 
- * @author Joerg Bellmann
  *
+ * @author  Joerg Bellmann
  */
 public class ResolveTomcatStep implements Step {
 
@@ -44,9 +44,10 @@ public class ResolveTomcatStep implements Step {
     protected T7Configuration configuration;
     protected PluginArtifactResolver artifactResolver;
     private static final String SEVEN_0 = "7.0.";
+    private static final String EIGHT_0 = "8.0.";
 
     @Override
-    public void execute(Context context) {
+    public void execute(final Context context) {
         this.configuration = context.getConfiguration();
         this.artifactResolver = context.getArtifactResolver();
         this.logger = context.getLog();
@@ -67,13 +68,17 @@ public class ResolveTomcatStep implements Step {
                 } else {
                     tomcatArtifact = new TomcatArtifact();
                 }
+            } else if (tomcatVersion.startsWith(EIGHT_0)) {
+                tomcatArtifact = new ApacheTomcatArtifact();
             } else {
                 tomcatArtifact = new TomcatArtifact();
             }
 
             logger.debug("Resolving " + tomcatArtifact.toString());
-            //tomcatArtifact = configuration.getTomcatArtifact();
+
+            // tomcatArtifact = configuration.getTomcatArtifact();
             tomcatArtifact.setVersion(configuration.getTomcatVersion());
+
             File resolvedArtifact = artifactResolver.resolveArtifact(tomcatArtifact.getArtifactCoordinates());
             unpackDirectory = getUnpackDirectory();
             ZipUtil.unzip(resolvedArtifact, unpackDirectory);
@@ -96,13 +101,14 @@ public class ResolveTomcatStep implements Step {
         }
     }
 
-    private void copyToTomcatDirectory(File unpackDirectory) throws IOException {
+    private void copyToTomcatDirectory(final File unpackDirectory) throws IOException {
         File[] files = unpackDirectory.listFiles(new FileFilter() {
-            @Override
-            public boolean accept(File file) {
-                return file.isDirectory();
-            }
-        });
+                    @Override
+                    public boolean accept(final File file) {
+                        return file.isDirectory();
+                    }
+                });
+
         // should only be one
         FileUtils.copyDirectory(files[0], this.configuration.getCatalinaBase());
     }

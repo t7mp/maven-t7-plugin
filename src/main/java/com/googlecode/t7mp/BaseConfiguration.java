@@ -11,6 +11,7 @@
 package com.googlecode.t7mp;
 
 import java.io.File;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,9 +20,7 @@ import java.util.Map;
 import com.googlecode.t7mp.scanner.ScannerConfiguration;
 
 /**
- *
- * @author Joerg Bellmann
- *
+ * @author  Joerg Bellmann
  */
 public class BaseConfiguration implements T7Configuration {
 
@@ -29,183 +28,176 @@ public class BaseConfiguration implements T7Configuration {
     public static final int DEFAULT_TOMCAT_SHUTDOWN_PORT = 8005;
     public static final String DEFAULT_CONTEXT_PATH_ROOT = "ROOT";
     protected TomcatArtifact tomcatArtifact = new TomcatArtifact();
+
     /**
-     *
-     * @parameter expression="${t7.tomcatSetAwait}" default-value="true"
-     *
+     * @parameter  expression="${t7.tomcatSetAwait}" default-value="true"
      */
     protected boolean tomcatSetAwait = true;
+
     /**
-     *
-     * @parameter expression="${t7.lookInside}" default-value="false"
-     *
+     * @parameter  expression="${t7.lookInside}" default-value="false"
      */
     protected boolean lookInside = false;
+
     /**
-     *
-     * @parameter expression="${t7.resolverUpdateSnapshotsAlways}" default-value="false"
+     * @parameter  expression="${t7.resolverUpdateSnapshotsAlways}" default-value="false"
      */
     protected boolean resolverUpdateSnapshotsAllways = false;
+
     /**
-     *
-     * @parameter expression="${t7.tomcatVersion}" default-value="7.0.37"
+     * @parameter  expression="${t7.tomcatVersion}" default-value="7.0.52"
      */
     protected String tomcatVersion = TomcatArtifact.DEFAULT_TOMCAT_VERSION;
+
     /**
-     *
-     * @parameter expression="${t7.tomcatHttpPort}" default-value="8080"
+     * @parameter  expression="${t7.tomcatHttpPort}" default-value="8080"
      */
     protected int tomcatHttpPort = DEFAULT_TOMCAT_HTTP_PORT;
+
     /**
-     *
-     * @parameter expression="${t7.tomcatShutdownPort}" default-value="8005"
+     * @parameter  expression="${t7.tomcatShutdownPort}" default-value="8005"
      */
     protected int tomcatShutdownPort = DEFAULT_TOMCAT_SHUTDOWN_PORT;
+
     /**
-     *
-     * @parameter expression="${t7.tomcatShutdownCommand}" default-value="SHUTDOWN"
+     * @parameter  expression="${t7.tomcatShutdownCommand}" default-value="SHUTDOWN"
      */
     protected String tomcatShutdownCommand = "SHUTDOWN";
+
     /**
-     *
-     * @parameter expression="${t7.tomcatShutdownHost}" default-value="localhost"
-     *
+     * @parameter  expression="${t7.tomcatShutdownHost}" default-value="localhost"
      */
     protected String tomcatShutdownHost = "localhost";
+
     /**
-     *
-     * @parameter expression="${t7.tomcatHostName}" default-value="localhost"
-     *
+     * @parameter  expression="${t7.tomcatHostName}" default-value="localhost"
      */
     protected String tomcatHostName = "localhost";
+
     /**
-     *
-     * @parameter default-value="${project.build.directory}/tomcat"
-     * @readonly // at the moment
-     *
+     * @parameter  default-value="${project.build.directory}/tomcat"
+     * @readonly   // at the moment
      */
     protected File catalinaBase;
+
     /**
-     *
-     * @parameter expression="${t7.tomcatConfigDirectory}" default-value="${basedir}/src/main/tomcat/conf"
+     * @parameter  expression="${t7.tomcatConfigDirectory}" default-value="${basedir}/src/main/tomcat/conf"
      * @optional
-     *
      */
     protected File tomcatConfigDirectory;
+
     /**
-     *
-     * @parameter expression="${t7.overwriteWebXML}"
+     * @parameter  expression="${t7.overwriteWebXML}"
      */
     protected File overwriteWebXML;
+
     /**
-     *
-     * @parameter default-value="${project.build.directory}/${project.build.finalName}"
+     * @parameter  default-value="${project.build.directory}/${project.build.finalName}"
      * @readonly
-     *
      */
     protected File webappOutputDirectory;
+
     /**
-     *
-     * @parameter expression="${t7.contextPath}" default-value="${project.build.finalName}"
+     * @parameter  expression="${t7.contextPath}" default-value="${project.build.finalName}"
      * @optional
-     *
      */
     protected String contextPath = DEFAULT_CONTEXT_PATH_ROOT;
+
     /**
-     * @parameter default-value="${project.build.finalName}"
+     * @parameter  default-value="${project.build.finalName}"
      * @readonly
      */
     protected String buildFinalName = DEFAULT_CONTEXT_PATH_ROOT;
+
     /**
-     * @parameter default-value="${basedir}/src/main/webapp"
+     * @parameter  default-value="${basedir}/src/main/webapp"
      * @readonly
      */
     protected File webappSourceDirectory = null;
+
     /**
-     * @parameter default-value="${project.packaging}"
-     *
-     *
+     * @parameter  default-value="${project.packaging}"
      */
     protected String packaging = "war";
+
     /**
-     *
-     * @parameter expression="${t7.scanClasses}" default-value="false"
+     * @parameter  expression="${t7.scanClasses}" default-value="false"
      */
     protected boolean scanClasses = false;
+
     /**
-     * @parameter default-value="${basedir}/target/classes"
+     * @parameter  default-value="${basedir}/target/classes"
      * @readonly
      */
     protected File webappClassDirectory = null;
+
     /**
-     * @parameter @optional
+     * @parameter  @optional
      */
     protected File contextFile = null;
+
     /**
-     *
      * @parameter
      */
     protected ArrayList<WebappArtifact> webapps = new ArrayList<WebappArtifact>();
+
     /**
-     *
      * @parameter
      */
     protected Map<String, String> systemProperties = new HashMap<String, String>();
+
     /**
-     *
      * @parameter
      */
     protected List<JarArtifact> libs = new ArrayList<JarArtifact>();
+
     /**
-     *
      * @parameter
      */
     protected ArrayList<ScannerConfiguration> scanners = new ArrayList<ScannerConfiguration>();
+
     /**
-     *
-     * @parameter default-value="false"
+     * @parameter  default-value="false"
      */
     protected boolean suspendConsoleOutput = false;
+
     /**
      * @parameter
      */
     protected ConfigurationArtifact configArtifact = null;
 
     /**
-     *
-     * @parameter default-value="true"
+     * @parameter  default-value="true"
      */
     protected boolean deleteDefaultTomcatWebapps = true;
 
     /**
-     * @parameter default-value="false"
+     * @parameter  default-value="false"
      */
     protected boolean deleteTomcatDefaultRootWebapp = false;
 
     /**
-     * @parameter default-value="false"
+     * @parameter  default-value="false"
      */
     protected boolean deleteTomcatDefaultManagerWebapp = false;
 
     /**
-     * @parameter default-value="false" 
+     * @parameter  default-value="false"
      */
     protected boolean deleteTomcatDefaultHostManagerWebapp = false;
 
     /**
-     * @parameter default-value="false"
+     * @parameter  default-value="false"
      */
     protected boolean deleteTomcatDefaultExamplesWebapp = false;
 
     /**
-     * @parameter default-value="false"
+     * @parameter  default-value="false"
      */
     protected boolean deleteTomcatDefaultDocsWebapp = false;
 
     /**
-     *
-     *
-     * @parameter default-value="1"
+     * @parameter  default-value="1"
      */
     protected int instanceCount = 1;
 
@@ -217,7 +209,7 @@ public class BaseConfiguration implements T7Configuration {
         return tomcatSetAwait;
     }
 
-    public void setTomcatSetAwait(boolean tomcatSetAwait) {
+    public void setTomcatSetAwait(final boolean tomcatSetAwait) {
         this.tomcatSetAwait = tomcatSetAwait;
     }
 
@@ -229,7 +221,7 @@ public class BaseConfiguration implements T7Configuration {
         return lookInside;
     }
 
-    public void setLookInside(boolean lookInside) {
+    public void setLookInside(final boolean lookInside) {
         this.lookInside = lookInside;
     }
 
@@ -241,7 +233,7 @@ public class BaseConfiguration implements T7Configuration {
         return resolverUpdateSnapshotsAllways;
     }
 
-    public void setResolverUpdateSnapshotsAllways(boolean resolverUpdateSnapshotsAllways) {
+    public void setResolverUpdateSnapshotsAllways(final boolean resolverUpdateSnapshotsAllways) {
         this.resolverUpdateSnapshotsAllways = resolverUpdateSnapshotsAllways;
     }
 
@@ -253,7 +245,7 @@ public class BaseConfiguration implements T7Configuration {
         return tomcatVersion;
     }
 
-    public void setTomcatVersion(String tomcatVersion) {
+    public void setTomcatVersion(final String tomcatVersion) {
         this.tomcatVersion = tomcatVersion;
     }
 
@@ -266,7 +258,7 @@ public class BaseConfiguration implements T7Configuration {
     }
 
     @Override
-    public void setTomcatHttpPort(int tomcatHttpPort) {
+    public void setTomcatHttpPort(final int tomcatHttpPort) {
         this.tomcatHttpPort = tomcatHttpPort;
     }
 
@@ -279,7 +271,7 @@ public class BaseConfiguration implements T7Configuration {
     }
 
     @Override
-    public void setTomcatShutdownPort(int tomcatShutdownPort) {
+    public void setTomcatShutdownPort(final int tomcatShutdownPort) {
         this.tomcatShutdownPort = tomcatShutdownPort;
     }
 
@@ -291,7 +283,7 @@ public class BaseConfiguration implements T7Configuration {
         return tomcatShutdownCommand;
     }
 
-    public void setTomcatShutdownCommand(String tomcatShutdownCommand) {
+    public void setTomcatShutdownCommand(final String tomcatShutdownCommand) {
         this.tomcatShutdownCommand = tomcatShutdownCommand;
     }
 
@@ -303,7 +295,7 @@ public class BaseConfiguration implements T7Configuration {
         return tomcatShutdownHost;
     }
 
-    public void setTomcatShutdownHost(String tomcatShutdownHost) {
+    public void setTomcatShutdownHost(final String tomcatShutdownHost) {
         this.tomcatShutdownHost = tomcatShutdownHost;
     }
 
@@ -312,7 +304,7 @@ public class BaseConfiguration implements T7Configuration {
         return tomcatHostName;
     }
 
-    public void setTomcatHostName(String tomcatHostName) {
+    public void setTomcatHostName(final String tomcatHostName) {
         this.tomcatHostName = tomcatHostName;
     }
 
@@ -325,7 +317,7 @@ public class BaseConfiguration implements T7Configuration {
     }
 
     @Override
-    public void setCatalinaBase(File catalinaBase) {
+    public void setCatalinaBase(final File catalinaBase) {
         this.catalinaBase = catalinaBase;
     }
 
@@ -337,7 +329,7 @@ public class BaseConfiguration implements T7Configuration {
         return tomcatConfigDirectory;
     }
 
-    public void setTomcatConfigDirectory(File tomcatConfigDirectory) {
+    public void setTomcatConfigDirectory(final File tomcatConfigDirectory) {
         this.tomcatConfigDirectory = tomcatConfigDirectory;
     }
 
@@ -349,7 +341,7 @@ public class BaseConfiguration implements T7Configuration {
         return overwriteWebXML;
     }
 
-    public void setOverwriteWebXML(File overwriteWebXML) {
+    public void setOverwriteWebXML(final File overwriteWebXML) {
         this.overwriteWebXML = overwriteWebXML;
     }
 
@@ -361,7 +353,7 @@ public class BaseConfiguration implements T7Configuration {
         return webappOutputDirectory;
     }
 
-    public void setWebappOutputDirectory(File webappOutputDirectory) {
+    public void setWebappOutputDirectory(final File webappOutputDirectory) {
         this.webappOutputDirectory = webappOutputDirectory;
     }
 
@@ -373,7 +365,7 @@ public class BaseConfiguration implements T7Configuration {
         return contextPath;
     }
 
-    public void setContextPath(String contextPath) {
+    public void setContextPath(final String contextPath) {
         this.contextPath = contextPath;
     }
 
@@ -385,7 +377,7 @@ public class BaseConfiguration implements T7Configuration {
         return buildFinalName;
     }
 
-    public void setBuildFinalName(String buildFinalName) {
+    public void setBuildFinalName(final String buildFinalName) {
         this.buildFinalName = buildFinalName;
     }
 
@@ -397,7 +389,7 @@ public class BaseConfiguration implements T7Configuration {
         return webappSourceDirectory;
     }
 
-    public void setWebappSourceDirectory(File webappSourceDirectory) {
+    public void setWebappSourceDirectory(final File webappSourceDirectory) {
         this.webappSourceDirectory = webappSourceDirectory;
     }
 
@@ -409,7 +401,7 @@ public class BaseConfiguration implements T7Configuration {
         return packaging;
     }
 
-    public void setPackaging(String packaging) {
+    public void setPackaging(final String packaging) {
         this.packaging = packaging;
     }
 
@@ -421,7 +413,7 @@ public class BaseConfiguration implements T7Configuration {
         return scanClasses;
     }
 
-    public void setScanClasses(boolean scanClasses) {
+    public void setScanClasses(final boolean scanClasses) {
         this.scanClasses = scanClasses;
     }
 
@@ -433,7 +425,7 @@ public class BaseConfiguration implements T7Configuration {
         return webappClassDirectory;
     }
 
-    public void setWebappClassDirectory(File webappClassDirectory) {
+    public void setWebappClassDirectory(final File webappClassDirectory) {
         this.webappClassDirectory = webappClassDirectory;
     }
 
@@ -445,7 +437,7 @@ public class BaseConfiguration implements T7Configuration {
         return contextFile;
     }
 
-    public void setContextFile(File contextFile) {
+    public void setContextFile(final File contextFile) {
         this.contextFile = contextFile;
     }
 
@@ -457,7 +449,7 @@ public class BaseConfiguration implements T7Configuration {
         return webapps;
     }
 
-    public void setWebapps(ArrayList<WebappArtifact> webapps) {
+    public void setWebapps(final ArrayList<WebappArtifact> webapps) {
         this.webapps = webapps;
     }
 
@@ -469,7 +461,7 @@ public class BaseConfiguration implements T7Configuration {
         return systemProperties;
     }
 
-    public void setSystemProperties(Map<String, String> systemProperties) {
+    public void setSystemProperties(final Map<String, String> systemProperties) {
         this.systemProperties = systemProperties;
     }
 
@@ -481,7 +473,7 @@ public class BaseConfiguration implements T7Configuration {
         return libs;
     }
 
-    public void setLibs(List<JarArtifact> libs) {
+    public void setLibs(final List<JarArtifact> libs) {
         this.libs = libs;
     }
 
@@ -493,7 +485,7 @@ public class BaseConfiguration implements T7Configuration {
         return scanners;
     }
 
-    public void setScanners(ArrayList<ScannerConfiguration> scanners) {
+    public void setScanners(final ArrayList<ScannerConfiguration> scanners) {
         this.scanners = scanners;
     }
 
@@ -505,7 +497,7 @@ public class BaseConfiguration implements T7Configuration {
         return suspendConsoleOutput;
     }
 
-    public void setSuspendConsoleOutput(boolean suspendConsoleOutput) {
+    public void setSuspendConsoleOutput(final boolean suspendConsoleOutput) {
         this.suspendConsoleOutput = suspendConsoleOutput;
     }
 
@@ -517,7 +509,7 @@ public class BaseConfiguration implements T7Configuration {
         return configArtifact;
     }
 
-    public void setConfigArtifact(ConfigurationArtifact configArtifact) {
+    public void setConfigArtifact(final ConfigurationArtifact configArtifact) {
         this.configArtifact = configArtifact;
     }
 
@@ -537,7 +529,7 @@ public class BaseConfiguration implements T7Configuration {
         return deleteDefaultTomcatWebapps;
     }
 
-    public void setDownloadDefaultTomcatWebapps(boolean downloadDefaultTomcatWebapps) {
+    public void setDownloadDefaultTomcatWebapps(final boolean downloadDefaultTomcatWebapps) {
         this.deleteDefaultTomcatWebapps = downloadDefaultTomcatWebapps;
     }
 
@@ -546,7 +538,7 @@ public class BaseConfiguration implements T7Configuration {
         return deleteTomcatDefaultRootWebapp;
     }
 
-    public void setDeleteTomcatDefaultRootWebapp(boolean deleteTomcatDefaultRootWebapp) {
+    public void setDeleteTomcatDefaultRootWebapp(final boolean deleteTomcatDefaultRootWebapp) {
         this.deleteTomcatDefaultRootWebapp = deleteTomcatDefaultRootWebapp;
     }
 
@@ -555,31 +547,34 @@ public class BaseConfiguration implements T7Configuration {
         return deleteTomcatDefaultManagerWebapp;
     }
 
-    public void setDeleteTomcateDefaultManagerWebapp(boolean deleteTomcatDefaultManagerWebapp) {
+    public void setDeleteTomcateDefaultManagerWebapp(final boolean deleteTomcatDefaultManagerWebapp) {
         this.deleteTomcatDefaultManagerWebapp = deleteTomcatDefaultManagerWebapp;
     }
 
+    @Override
     public boolean isDeleteTomcatDefaultHostManagerWebapp() {
         return deleteTomcatDefaultHostManagerWebapp;
     }
 
-    public void setDeleteTomcatDefaultHostManagerWebapp(boolean deleteTomcatDefaultHostManagerWebapp) {
+    public void setDeleteTomcatDefaultHostManagerWebapp(final boolean deleteTomcatDefaultHostManagerWebapp) {
         this.deleteTomcatDefaultHostManagerWebapp = deleteTomcatDefaultHostManagerWebapp;
     }
 
+    @Override
     public boolean isDeleteTomcatDefaultExamplesWebapp() {
         return deleteTomcatDefaultExamplesWebapp;
     }
 
-    public void setDeleteTomcatDefaultExamplesWebapp(boolean deleteTomcatDefaultExamplesWebapp) {
+    public void setDeleteTomcatDefaultExamplesWebapp(final boolean deleteTomcatDefaultExamplesWebapp) {
         this.deleteTomcatDefaultExamplesWebapp = deleteTomcatDefaultExamplesWebapp;
     }
 
+    @Override
     public boolean isDeleteTomcatDefaultDocsWebapp() {
         return deleteTomcatDefaultDocsWebapp;
     }
 
-    public void setDeleteTomcatDefaultDocsWebapp(boolean deleteTomcatDefaultDocsWebapp) {
+    public void setDeleteTomcatDefaultDocsWebapp(final boolean deleteTomcatDefaultDocsWebapp) {
         this.deleteTomcatDefaultDocsWebapp = deleteTomcatDefaultDocsWebapp;
     }
 
@@ -591,7 +586,7 @@ public class BaseConfiguration implements T7Configuration {
         return this.tomcatArtifact;
     }
 
-    public void setTomcatArtifact(TomcatArtifact tomcatArtifact) {
+    public void setTomcatArtifact(final TomcatArtifact tomcatArtifact) {
         this.tomcatArtifact = tomcatArtifact;
     }
 
@@ -600,7 +595,7 @@ public class BaseConfiguration implements T7Configuration {
         return instanceCount;
     }
 
-    public void setInstanceCount(int instanceCount) {
+    public void setInstanceCount(final int instanceCount) {
         this.instanceCount = instanceCount;
     }
 }

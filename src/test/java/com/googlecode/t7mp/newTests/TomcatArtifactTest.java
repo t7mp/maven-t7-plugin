@@ -15,16 +15,14 @@
  */
 package com.googlecode.t7mp.newTests;
 
-import junit.framework.Assert;
-
 import org.junit.Test;
 
 import com.googlecode.t7mp.TomcatArtifact;
 
+import junit.framework.Assert;
+
 /**
- * 
- * @author Joerg Bellmann
- *
+ * @author  Joerg Bellmann
  */
 public class TomcatArtifactTest {
 
@@ -48,7 +46,7 @@ public class TomcatArtifactTest {
     @Test
     public void testCoordinates() {
         TomcatArtifact tomcat = new TomcatArtifact();
-        Assert.assertEquals("com.googlecode.t7mp:tomcat:zip:7.0.27", tomcat.getArtifactCoordinates());
+        Assert.assertEquals("com.googlecode.t7mp:tomcat:zip:7.0.52", tomcat.getArtifactCoordinates());
     }
 
     @Test

@@ -13,10 +13,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-    <modules>
-    	<module>tomcatconfig</module>
-    </modules>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -24,18 +20,12 @@
 				<artifactId>maven-t7-plugin</artifactId>
 				<version>@project.version@</version>
 				<configuration>
-					<tomcatVersion>7.0.22</tomcatVersion>
+					<tomcatVersion>8.0.3</tomcatVersion>
 					<tomcatSetAwait>false</tomcatSetAwait>
 					<lookInside>true</lookInside>
-					<downloadTomcatExamples>true</downloadTomcatExamples>
 					<systemProperties>
                        <XXXX>${basedir}</XXXX>
                     </systemProperties>
-                    <configArtifact>
-                      <groupId>com.googlecode.t7mp.config</groupId>
-                      <artifactId>tomcatconfig</artifactId>
-                      <version>0.0.1-SNAPSHOT</version>
-                    </configArtifact>
 				</configuration>
 				<executions>
 					<execution>
