@@ -17,19 +17,18 @@ package com.googlecode.t7mp.newTests;
 
 import java.io.File;
 
-import junit.framework.Assert;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
 import org.junit.rules.TemporaryFolder;
 
 import com.googlecode.t7mp.BaseConfiguration;
 
+import junit.framework.Assert;
+
 /**
- * 
- * @author Joerg Bellmann
- *
+ * @author  Joerg Bellmann
  */
 public class BaseConfigurationTest {
 
@@ -51,7 +50,7 @@ public class BaseConfigurationTest {
         Assert.assertEquals(8005, configuration.getTomcatShutdownPort());
         Assert.assertEquals(BaseConfiguration.DEFAULT_CONTEXT_PATH_ROOT, configuration.getBuildFinalName());
         Assert.assertNotNull(configuration.getCatalinaBase());
-        Assert.assertEquals("7.0.27", configuration.getTomcatVersion());
+        Assert.assertEquals("7.0.52", configuration.getTomcatVersion());
     }
 
 }

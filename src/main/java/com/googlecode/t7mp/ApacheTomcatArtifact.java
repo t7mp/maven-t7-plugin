@@ -1,15 +1,13 @@
 package com.googlecode.t7mp;
 
 /**
- * 
  * TODO Comment
  *
- * @author Joerg Bellmann
- *
+ * @author  Joerg Bellmann
  */
 public class ApacheTomcatArtifact extends TomcatArtifact {
 
-    public static final String DEFAULT_TOMCAT_VERSION = "7.0.42";
+    public static final String DEFAULT_TOMCAT_VERSION = "7.0.52";
     public static final String A_TOMCAT_GROUPID = "org.apache.tomcat";
     public static final String A_TOMCAT_ARTIFACTID = "tomcat";
     public static final String A_TOMCAT_TYPE = "zip";
@@ -18,7 +16,7 @@ public class ApacheTomcatArtifact extends TomcatArtifact {
         this(DEFAULT_TOMCAT_VERSION);
     }
 
-    public ApacheTomcatArtifact(String version) {
+    public ApacheTomcatArtifact(final String version) {
         super(A_TOMCAT_GROUPID, A_TOMCAT_ARTIFACTID, version, A_TOMCAT_TYPE);
     }
 

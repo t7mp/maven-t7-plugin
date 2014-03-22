@@ -17,13 +17,12 @@ package com.googlecode.t7mp;
 
 /**
  * Use this artifact to resolve the tomcat distribution from Maven-Central.
- * 
- * @author Joerg Bellmann
  *
+ * @author  Joerg Bellmann
  */
 public class TomcatArtifact extends AbstractArtifact {
 
-    public static final String DEFAULT_TOMCAT_VERSION = "7.0.27";
+    public static final String DEFAULT_TOMCAT_VERSION = "7.0.52";
     public static final String TOMCAT_GROUPID = "com.googlecode.t7mp";
     public static final String TOMCAT_ARTIFACTID = "tomcat";
     public static final String TOMCAT_TYPE = "zip";
@@ -32,11 +31,11 @@ public class TomcatArtifact extends AbstractArtifact {
         this(DEFAULT_TOMCAT_VERSION);
     }
 
-    public TomcatArtifact(String version) {
+    public TomcatArtifact(final String version) {
         this(TOMCAT_GROUPID, TOMCAT_ARTIFACTID, version, TOMCAT_TYPE);
     }
 
-    public TomcatArtifact(String groupId, String artifactId, String version, String type) {
+    public TomcatArtifact(final String groupId, final String artifactId, final String version, final String type) {
         super(groupId, artifactId, version, null, type);
     }
 

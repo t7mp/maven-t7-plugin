@@ -17,8 +17,8 @@ package com.googlecode.t7mp;
 
 /**
  * TODO Comment.
- * @author Joerg Bellmann
  *
+ * @author  Joerg Bellmann
  */
 public final class PreConditions {
 
@@ -26,8 +26,8 @@ public final class PreConditions {
         throw new RuntimeException("Dont call this private constructor");
     }
 
-    public static void checkConfiguredTomcatVersion(PluginLog log, String tomcatVersion) {
-        if (!tomcatVersion.startsWith("7.") && !tomcatVersion.startsWith("6.")) {
+    public static void checkConfiguredTomcatVersion(final PluginLog log, final String tomcatVersion) {
+        if (!tomcatVersion.startsWith("8.") && !tomcatVersion.startsWith("7.") && !tomcatVersion.startsWith("6.")) {
             log.info("");
             log.info("");
             log.error("======================= MAVEN-T7-PLUGIN ==================");
