@@ -41,9 +41,12 @@ public class LocalMavenRepositoryArtifactResolver implements PluginArtifactResol
     }
 
     private File createLocalMavenRepository() {
-        File userHomeDirectory = new File(System.getProperty("user.home"));
-        File repositoryDirectory = new File(userHomeDirectory, "/.m2/repository");
-        return createLocalMavenRepository(repositoryDirectory);
+       String mavenRepositoryPath = System.getProperty("maven.repo.home");
+       if(StringUtils.isNotBlank(mavenRepositoryPath)) {
+          return createLocalMavenRepository(new File(mavenRepositoryPath));
+       } else {
+          return createLocalMavenRepository(new File(new File(System.getProperty("user.home")), "/.m2/repository"));
+       }
     }
 
     private File createLocalMavenRepository(File file) {

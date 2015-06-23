@@ -50,12 +50,12 @@ public class RunForkedMojo extends AbstractT7TomcatMojo {
         printInstancesToStart(configurations);
 
         for (InstanceConfiguration configuration : configurations) {
-            getLog().info("Starting Tomcat ...");
-            try {
+           getLog().info("Starting Tomcat instance " + configuration.getId() + " ...");
+           try {
                 mavenPluginContext.getConfiguration().setTomcatHttpPort(configuration.getHttpPort());
                 mavenPluginContext.getConfiguration().setTomcatShutdownPort(configuration.getShutdownPort());
                 mavenPluginContext.getConfiguration().setCatalinaBase(new File(configuration.getCatalinaBasePath()));
-                ForkedInstance p = new ForkedInstance();
+                ForkedInstance p = new ForkedInstance(configuration.getId());
                 p.configureInstance(mavenPluginContext);
                 Thread t = new Thread(p);
                 t.start();

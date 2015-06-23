@@ -39,8 +39,16 @@ public class ForkedInstance implements Runnable {
     private Process p;
     private PluginLog log;
     private T7Configuration configuration;
+    private int id;
 
     /**
+     * @param id instance id
+     */
+    public ForkedInstance(int id) {
+       this.id = id;
+    }
+
+   /**
      * Set up the instance.
      * 
      * @param mavenPluginContext
@@ -53,12 +61,17 @@ public class ForkedInstance implements Runnable {
 
     @Override
     public void run() {
-        startTomcat();
+       try {
+          startTomcat();
+       } catch(IOException e) {
+          log.error("Failed to start tomcat instance.");
+       }
     }
 
-    private void startTomcat() {
+    private void startTomcat() throws IOException {
+       File lockFile = createLockFile();
 
-        setStartScriptPermissions(TomcatUtil.getBinDirectory(configuration.getCatalinaBase()));
+       setStartScriptPermissions(TomcatUtil.getBinDirectory(configuration.getCatalinaBase()));
 
         ProcessBuilder processBuilder = new ProcessBuilder(getStartSkriptCommand());
         processBuilder.directory(TomcatUtil.getBinDirectory(configuration.getCatalinaBase()));
@@ -90,9 +103,25 @@ public class ForkedInstance implements Runnable {
             log.error(e.getMessage(), e);
         }
         log.info("Exit-Value " + exitValue);
+
+        deleteLockFile(lockFile);
     }
 
-    private String getNextLine(BufferedReader br) {
+    private File createLockFile() throws IOException {
+       File lockFile = new File(new File(System.getProperty("java.io.tmpdir")), "maven-t7-forked-mojo-" + id + ".tmp");
+       if(!lockFile.createNewFile()) {
+          log.error("Failed to create lock file for tomcat instance " + id);
+       }
+       return lockFile;
+    }
+
+    private void deleteLockFile(File lockFile) {
+       if(!lockFile.delete()) {
+          log.error("Failed to delete lock file for tomcat instance " + id);
+       }
+    }
+
+   private String getNextLine(BufferedReader br) {
         String line;
         try {
             line = br.readLine();

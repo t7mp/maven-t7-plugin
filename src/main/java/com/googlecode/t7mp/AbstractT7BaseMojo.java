@@ -49,6 +49,8 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
 
     public static final String CONTEXT_PATH_ROOT = "ROOT";
 
+    public static final int DEFAULT_TOMCAT_SHUTDOWN_TIMEOUT = 10;       // in seconds
+
     /**
      * @parameter expression="${project}"
      * @required
@@ -288,6 +290,12 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
      * @parameter default-value="1"
      */
     protected int instanceCount = 1;
+
+    /**
+     * @parameter expression="${t7.tomcatShutdownTimeout}" default-value="10"
+     */
+    protected int tomcatShutdownTimeout = DEFAULT_TOMCAT_SHUTDOWN_TIMEOUT;
+
 
     public boolean isWebProject() {
         return this.packaging.equals("war");
@@ -587,4 +595,11 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
         this.instanceCount = instanceCount;
     }
 
+   public int getTomcatShutdownTimeout() {
+      return tomcatShutdownTimeout;
+   }
+
+   public void setTomcatShutdownTimeout(int timeout) {
+      this.tomcatShutdownTimeout = timeout;
+   }
 }

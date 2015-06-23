@@ -27,6 +27,7 @@ public class BaseConfiguration implements T7Configuration {
     public static final int DEFAULT_TOMCAT_HTTP_PORT = 8080;
     public static final int DEFAULT_TOMCAT_SHUTDOWN_PORT = 8005;
     public static final String DEFAULT_CONTEXT_PATH_ROOT = "ROOT";
+    public static final int DEFAULT_TOMCAT_SHUTDOWN_TIMEOUT = 10;    // in seconds
     protected TomcatArtifact tomcatArtifact = new TomcatArtifact();
 
     /**
@@ -200,6 +201,11 @@ public class BaseConfiguration implements T7Configuration {
      * @parameter  default-value="1"
      */
     protected int instanceCount = 1;
+
+    /**
+     * @parameter expression="${t7.tomcatShutdownTimeout}" default-value="10"
+     */
+    protected int tomcatShutdownTimeout = DEFAULT_TOMCAT_SHUTDOWN_TIMEOUT;
 
     /* (non-Javadoc)
      * @see com.googlecode.t7mp.PluginConfiguration#isTomcatSetAwait()
@@ -595,7 +601,16 @@ public class BaseConfiguration implements T7Configuration {
         return instanceCount;
     }
 
-    public void setInstanceCount(final int instanceCount) {
+    public void setTomcatShutdownTimeout(int timeout) {
+       this.tomcatShutdownTimeout = timeout;
+    }
+
+    @Override
+    public int getTomcatShutdownTimeout() {
+       return tomcatShutdownTimeout;
+    }
+
+   public void setInstanceCount(final int instanceCount) {
         this.instanceCount = instanceCount;
     }
 }
