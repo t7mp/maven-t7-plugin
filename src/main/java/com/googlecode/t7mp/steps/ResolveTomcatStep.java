@@ -45,6 +45,7 @@ public class ResolveTomcatStep implements Step {
     protected PluginArtifactResolver artifactResolver;
     private static final String SEVEN_0 = "7.0.";
     private static final String EIGHT_0 = "8.0.";
+    private static final String EIGHT_5 = "8.5.";
 
     @Override
     public void execute(final Context context) {
@@ -69,6 +70,8 @@ public class ResolveTomcatStep implements Step {
                     tomcatArtifact = new TomcatArtifact();
                 }
             } else if (tomcatVersion.startsWith(EIGHT_0)) {
+                tomcatArtifact = new ApacheTomcatArtifact();
+            } else if (tomcatVersion.startsWith(EIGHT_5)) {
                 tomcatArtifact = new ApacheTomcatArtifact();
             } else {
                 tomcatArtifact = new TomcatArtifact();
