@@ -16,16 +16,17 @@
 package com.googlecode.t7mp.newTests;
 
 import java.io.File;
+import java.io.IOException;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
 import org.junit.rules.TemporaryFolder;
 
 import com.googlecode.t7mp.BaseConfiguration;
 
-import junit.framework.Assert;
+
 
 /**
  * @author  Joerg Bellmann
@@ -33,12 +34,12 @@ import junit.framework.Assert;
 public class BaseConfigurationTest {
 
     @Rule
-    public static TemporaryFolder folders = new TemporaryFolder();
+    public TemporaryFolder folders = new TemporaryFolder();
 
     private File catalinaBaseDirectory = null;
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         catalinaBaseDirectory = folders.newFolder("catalinaBase");
     }
 

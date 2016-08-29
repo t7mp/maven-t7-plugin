@@ -16,6 +16,7 @@
 package com.googlecode.t7mp;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -32,14 +33,14 @@ import com.googlecode.t7mp.configuration.LocalMavenRepositoryArtifactResolver;
 public abstract class AbstractBaseTest {
 
     @Rule
-    public static TemporaryFolder tempFolders = new TemporaryFolder();
+    public TemporaryFolder tempFolders = new TemporaryFolder();
 
     protected BaseConfiguration configuration;
 
     protected ChainedArtifactResolver chainedArtifactResolver;
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         //
         configuration = new BaseConfiguration();
         TomcatArtifact tomcatArtifact = new TomcatArtifact();

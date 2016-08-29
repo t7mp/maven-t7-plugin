@@ -16,6 +16,7 @@
 package com.googlecode.t7mp.configuration;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -34,10 +35,10 @@ public class InstallationTargetTest {
     private static Logger LOG = LoggerFactory.getLogger(InstallationTargetTest.class);
 
     @Rule
-    public static TemporaryFolder temporyFolder = new TemporaryFolder();
+    public TemporaryFolder temporyFolder = new TemporaryFolder();
 
     @Test
-    public void testDefaultInstallationTarget() {
+    public void testDefaultInstallationTarget() throws IOException {
         TomcatDirectoryLayout target = new DefaultInstallationTarget(temporyFolder.newFolder("tomcat"));
         assertDirectory(target.getBinDirectory());
         assertDirectory(target.getConfDirectory());
@@ -61,7 +62,7 @@ public class InstallationTargetTest {
     }
 
     @Test
-    public void testRootNotExistent() {
+    public void testRootNotExistent() throws IOException {
         File existentTempDirectory = temporyFolder.newFolder("exist");
         File notExistentDirectory = new File(existentTempDirectory, "notExistentDirectory");
         new DefaultInstallationTarget(notExistentDirectory);
@@ -75,7 +76,7 @@ public class InstallationTargetTest {
     }
 
     @Test(expected = RuntimeException.class)
-    public void testDefaultInstallationTargetWhenMkDirsReturnFalse() {
+    public void testDefaultInstallationTargetWhenMkDirsReturnFalse() throws IOException {
         DefaultInstallationTarget target = new DefaultInstallationTarget(temporyFolder.newFolder("tomcat"));
         target.createFile("klaus/ralf/egon");
     }
