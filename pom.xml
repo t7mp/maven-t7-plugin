@@ -70,6 +70,7 @@
         <slf4j.version>1.6.4</slf4j.version>
         
 		<license.skip>true</license.skip>
+		<source.level>1.6</source.level>
     </properties>
 
     <build>
@@ -117,20 +118,22 @@
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-javadoc-plugin</artifactId>
-                            <version>2.9</version>
+                            <version>2.10.3</version>
                             <configuration>
                                 <quiet>true</quiet>
+                                <breakiterator>true</breakiterator>
+			                    <header>${project.name}</header>
+			                    <source>${source.level}</source>
+			                    <links>
+			                        <link>http://docs.oracle.com/javase/6/docs/api</link>
+			                    </links>
+			                    <additionalparam />
                             </configuration>
                             <reportSets>
                                 <reportSet>
                                     <reports>
                                         <report>javadoc</report>
                                     </reports>
-                                    <configuration>
-                                        <links>
-                                            <link>http://java.sun.com/javase/6/docs/api/</link>
-                                        </links>
-                                    </configuration>
                                 </reportSet>
                             </reportSets>
                         </plugin>
@@ -174,8 +177,8 @@
                 <version>2.5.1</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>${source.level}</source>
+                    <target>${source.level}</target>
                 </configuration>
             </plugin>
             <!--
