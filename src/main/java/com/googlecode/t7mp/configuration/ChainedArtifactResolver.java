@@ -43,10 +43,10 @@ public class ChainedArtifactResolver implements PluginArtifactResolver {
                 if (result != null) {
                     break;
                 }
-                //CHECKSTYLE.OFF: Empty catch block
+                //CHECKSTYLE:OFF: Empty catch block
             } catch (ResolutionException e) {
             }
-            //CHECKSTYLE.ON: Empty catch block
+            //CHECKSTYLE:ON: Empty catch block
         }
         if (result == null) {
             throw new ResolutionException("Could not resolve artifact with coordinates " + coordinates);

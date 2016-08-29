@@ -40,11 +40,13 @@ import com.googlecode.t7mp.util.ZipUtil;
  */
 public class ResolveTomcatStep implements Step {
 
-    protected PluginLog logger;
+    private static final int APACHE_TOMCAT_MINOR_VERSION = 35;
+	protected PluginLog logger;
     protected T7Configuration configuration;
     protected PluginArtifactResolver artifactResolver;
     private static final String SEVEN_0 = "7.0.";
     private static final String EIGHT_0 = "8.0.";
+    private static final String EIGHT_5 = "8.5.";
 
     @Override
     public void execute(final Context context) {
@@ -63,12 +65,14 @@ public class ResolveTomcatStep implements Step {
             TomcatArtifact tomcatArtifact = null;
             if (tomcatVersion.startsWith(SEVEN_0)) {
                 String minorVersion = tomcatVersion.substring(SEVEN_0.length());
-                if (Integer.valueOf(minorVersion).intValue() >= 35) {
+                if (Integer.valueOf(minorVersion).intValue() >= APACHE_TOMCAT_MINOR_VERSION) {
                     tomcatArtifact = new ApacheTomcatArtifact();
                 } else {
                     tomcatArtifact = new TomcatArtifact();
                 }
             } else if (tomcatVersion.startsWith(EIGHT_0)) {
+                tomcatArtifact = new ApacheTomcatArtifact();
+            } else if (tomcatVersion.startsWith(EIGHT_5)) {
                 tomcatArtifact = new ApacheTomcatArtifact();
             } else {
                 tomcatArtifact = new TomcatArtifact();

@@ -1,7 +1,7 @@
 package com.googlecode.t7mp;
 
 /**
- * TODO Comment
+ * TODO Comment.
  *
  * @author  Joerg Bellmann
  */
