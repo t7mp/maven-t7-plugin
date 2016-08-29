@@ -1,10 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>4</version>
-    </parent>
+	<parent>
+		<groupId>org.siggi-ci</groupId>
+		<artifactId>siggi-ci-parent</artifactId>
+		<version>1</version>
+		<relativePath/>
+	</parent>
     <groupId>com.googlecode.t7mp</groupId>
     <artifactId>maven-t7-plugin</artifactId>
     <version>0.9.17-SNAPSHOT</version>
@@ -67,6 +68,8 @@
         <powermock.version>1.6.5</powermock.version>
         <velocity.version>1.6.4</velocity.version>
         <slf4j.version>1.6.4</slf4j.version>
+        
+		<license.skip>true</license.skip>
     </properties>
 
     <build>
@@ -283,13 +286,6 @@
                 <version>3.1</version>
                 <configuration>
                     <goalPrefix>t7</goalPrefix>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <mavenExecutorId>forked-path</mavenExecutorId>
                 </configuration>
             </plugin>
             <plugin>
@@ -510,46 +506,4 @@
             </build>
         </profile>
     </profiles>
-
-    <repositories>
-        <repository>
-            <id>com.springsource.repository.maven.milestone</id>
-            <url>http://maven.springframework.org/milestone/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>apache-snapshots</id>
-            <url>http://people.apache.org/repo/m2-snapshot-repository</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <checksumPolicy>IGNORE</checksumPolicy>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>powermock-repo</id>
-            <url>http://powermock.googlecode.com/svn/repo/</url>
-        </repository>
-        <repository>
-            <id>codehaus.snapshots</id>
-            <url>http://snapshots.repository.codehaus.org/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-    </repositories>
-
-    <distributionManagement>
-        <site>
-            <id>local.site</id>
-            <url>file:///${user.home}/maven/sites/${project.groupId}-${project.version}</url>
-        </site>
-    </distributionManagement>
 </project>
