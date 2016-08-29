@@ -40,8 +40,6 @@ import com.googlecode.t7mp.util.TomcatUtil;
  */
 public class StopForkedMojo extends AbstractT7TomcatMojo {
 
-    private static final long SLEEPTIME = 3000;
-
     private PluginLog log;
     private Context context;
 
@@ -56,32 +54,52 @@ public class StopForkedMojo extends AbstractT7TomcatMojo {
         List<InstanceConfiguration> configurations = InstanceConfigurationUtil.createInstanceConfigurations(mavenPluginContext);
 
         for (InstanceConfiguration configuration : configurations) {
-            setStartScriptPermissions(TomcatUtil.getBinDirectory(new File(configuration.getCatalinaBasePath())));
-            ProcessBuilder processBuilder = new ProcessBuilder(getStopSkriptCommand());
-            int exitValue = -1;
-            try {
-                File binDirectory = TomcatUtil.getBinDirectory(new File(configuration.getCatalinaBasePath()));
-                Process p = processBuilder.directory(binDirectory).start();
-                InputStream is = p.getInputStream();
-                BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                String line;
-                while ((line = br.readLine()) != null) {
-                    log.info(line);
-                }
-                exitValue = p.waitFor();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                Thread.sleep(SLEEPTIME);
-            } catch (InterruptedException e) {
-                log.error(e.getMessage(), e);
-            }
-            log.info("Exit-Value ForkedTomcatShutdownHook " + exitValue);
+           setStartScriptPermissions(TomcatUtil.getBinDirectory(new File(configuration.getCatalinaBasePath())));
+           ProcessBuilder processBuilder = new ProcessBuilder(getStopSkriptCommand());
+           int exitValue = -1;
+           try {
+              File binDirectory = TomcatUtil.getBinDirectory(new File(configuration.getCatalinaBasePath()));
+              Process p = processBuilder.directory(binDirectory).start();
+              InputStream is = p.getInputStream();
+              BufferedReader br = new BufferedReader(new InputStreamReader(is));
+              String line;
+              while ((line = br.readLine()) != null) {
+                 log.info(line);
+              }
+              exitValue = p.waitFor();
+           } catch (InterruptedException e) {
+              e.printStackTrace();
+           } catch (IOException e) {
+              e.printStackTrace();
+           }
+
+           waitForTomcatShutdown(configuration.getId(), mavenPluginContext);
+           log.info("Exit-Value ForkedTomcatShutdownHook " + exitValue);
         }
     }
+
+   private void waitForTomcatShutdown(int id, DefaultMavenPluginContext mavenPluginContext) {
+      int shutdownTimeout = mavenPluginContext.getConfiguration().getTomcatShutdownTimeout();
+      try {
+         log.info("Waiting up to " + shutdownTimeout + " seconds for tomcat instance " + id + " to stop.");
+         File lockFile = new File(new File(System.getProperty("java.io.tmpdir")), "maven-t7-forked-mojo-" + id + ".tmp");
+         int elapsedSeconds = 0;
+         while (lockFile.exists() && elapsedSeconds < shutdownTimeout) {
+            Thread.sleep(1000);
+            elapsedSeconds++;
+         }
+         if(lockFile.exists()) {
+            log.warn("Timed out waiting for tomcat to stop.");
+            if(!lockFile.delete()) {
+               log.error("Failed to delete lock file for tomcat instance " + id);
+            }
+         } else {
+            log.info("Tomcat has stopped in " + elapsedSeconds + " seconds.");
+         }
+      } catch (InterruptedException e) {
+         log.error(e.getMessage(), e);
+      }
+   }
 
     protected String[] getStopSkriptCommand() {
         if (SystemUtil.isWindowsSystem()) {

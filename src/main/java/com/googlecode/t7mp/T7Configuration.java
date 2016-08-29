@@ -104,4 +104,5 @@ public interface T7Configuration {
 
     int getInstanceCount();
 
+   int getTomcatShutdownTimeout();
 }
