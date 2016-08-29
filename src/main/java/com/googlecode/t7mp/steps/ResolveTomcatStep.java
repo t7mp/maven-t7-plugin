@@ -40,7 +40,8 @@ import com.googlecode.t7mp.util.ZipUtil;
  */
 public class ResolveTomcatStep implements Step {
 
-    protected PluginLog logger;
+    private static final int APACHE_TOMCAT_MINOR_VERSION = 35;
+	protected PluginLog logger;
     protected T7Configuration configuration;
     protected PluginArtifactResolver artifactResolver;
     private static final String SEVEN_0 = "7.0.";
@@ -64,7 +65,7 @@ public class ResolveTomcatStep implements Step {
             TomcatArtifact tomcatArtifact = null;
             if (tomcatVersion.startsWith(SEVEN_0)) {
                 String minorVersion = tomcatVersion.substring(SEVEN_0.length());
-                if (Integer.valueOf(minorVersion).intValue() >= 35) {
+                if (Integer.valueOf(minorVersion).intValue() >= APACHE_TOMCAT_MINOR_VERSION) {
                     tomcatArtifact = new ApacheTomcatArtifact();
                 } else {
                     tomcatArtifact = new TomcatArtifact();

@@ -87,7 +87,7 @@ public class DeleteDefaultWebappsSequence extends DefaultStepSequence {
 
     /**
      * 
-     * TODO Comment
+     * TODO Comment.
      *
      * @author Joerg Bellmann
      *
