@@ -37,7 +37,8 @@
   <Service name="Catalina">
     <Connector port="${http.port}" protocol="HTTP/1.1" 
                connectionTimeout="20000" 
-               redirectPort="8443" />
+               redirectPort="8443"
+               URIEncoding="${tomcat.uriEncoding}" />
     <Engine name="Catalina" defaultHost="${tomcat.hostname}">
       <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
              resourceName="UserDatabase"/>

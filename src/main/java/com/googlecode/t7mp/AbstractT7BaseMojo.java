@@ -167,6 +167,13 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
     protected String tomcatHostName = "localhost";
 
     /**
+     *
+     * @parameter expression="${t7.tomcatUriEncoding}" default-value="ISO-8859-1"
+     *
+     */
+    protected String tomcatUriEncoding = "ISO-8859-1";
+
+    /**
      * 
      * @parameter default-value="${project.build.directory}/tomcat"
      * @readonly // at the moment
@@ -371,6 +378,14 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
 
     public void setTomcatHostName(String tomcatHostName) {
         this.tomcatHostName = tomcatHostName;
+    }
+
+    public String getTomcatUriEncoding() {
+        return tomcatUriEncoding;
+    }
+
+    public void setTomcatUriEncoding(String tomcatUriEncoding) {
+        this.tomcatUriEncoding = tomcatUriEncoding;
     }
 
     public File getUserConfigDir() {

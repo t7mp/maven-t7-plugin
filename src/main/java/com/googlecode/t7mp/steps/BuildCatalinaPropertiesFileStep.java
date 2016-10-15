@@ -46,6 +46,7 @@ public class BuildCatalinaPropertiesFileStep implements Step {
             velocityContext.put("tomcatShutdownPort", configuration.getTomcatShutdownPort() + "");
             velocityContext.put("tomcatShutdownCommand", configuration.getTomcatShutdownCommand());
             velocityContext.put("tomcatHostName", configuration.getTomcatHostName());
+            velocityContext.put("tomcatUriEncoding", configuration.getTomcatUriEncoding());
             Writer writer = new FileWriter(new File(configuration.getCatalinaBase(), "/conf/catalina.properties"));
             template.merge(velocityContext, writer);
             writer.flush();
