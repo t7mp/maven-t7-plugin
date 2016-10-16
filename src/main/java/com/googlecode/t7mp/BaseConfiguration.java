@@ -27,6 +27,7 @@ public class BaseConfiguration implements T7Configuration {
     public static final int DEFAULT_TOMCAT_HTTP_PORT = 8080;
     public static final int DEFAULT_TOMCAT_SHUTDOWN_PORT = 8005;
     public static final String DEFAULT_CONTEXT_PATH_ROOT = "ROOT";
+    public static final String DEFAULT_URI_ENCODING = "ISO-8859-1";
     protected TomcatArtifact tomcatArtifact = new TomcatArtifact();
 
     /**
@@ -79,7 +80,7 @@ public class BaseConfiguration implements T7Configuration {
      * @parameter expression="${t7.tomcatUriEncoding}" default-value="ISO-8859-1"
      *
      */
-    protected String tomcatUriEncoding = "ISO-8859-1";
+    protected String tomcatUriEncoding = DEFAULT_URI_ENCODING;
 
     /**
      * @parameter  default-value="${project.build.directory}/tomcat"

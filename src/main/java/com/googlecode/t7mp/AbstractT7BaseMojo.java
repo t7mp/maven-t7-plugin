@@ -49,6 +49,8 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
 
     public static final String CONTEXT_PATH_ROOT = "ROOT";
 
+    public static final String DEFAULT_URI_ENCODING = "ISO-8859-1";
+
     /**
      * @parameter expression="${project}"
      * @required
@@ -171,7 +173,7 @@ public abstract class AbstractT7BaseMojo extends AbstractMojo {
      * @parameter expression="${t7.tomcatUriEncoding}" default-value="ISO-8859-1"
      *
      */
-    protected String tomcatUriEncoding = "ISO-8859-1";
+    protected String tomcatUriEncoding = DEFAULT_URI_ENCODING;
 
     /**
      * 
