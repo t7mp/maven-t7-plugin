@@ -66,6 +66,7 @@ public class ConfigFilesSequenceTest {
         Mockito.when(configuration.getCatalinaBase()).thenReturn(catalinaBaseDir);
         //        Mockito.when(mojo.getLog()).thenReturn(log);
         Mockito.when(configuration.getTomcatShutdownCommand()).thenReturn("SHUTDOWN");
+        Mockito.when(configuration.getTomcatUriEncoding()).thenReturn(BaseConfiguration.DEFAULT_URI_ENCODING);
         Context context = new DefaultContext(new ChainedArtifactResolver(),configuration);
         ConfigFilesSequence sequence = new ConfigFilesSequence();
         sequence.execute(context);

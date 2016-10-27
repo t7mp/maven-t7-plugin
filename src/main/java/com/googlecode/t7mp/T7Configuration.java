@@ -50,6 +50,8 @@ public interface T7Configuration {
 
     String getTomcatHostName();
 
+    String getTomcatUriEncoding();
+
     File getCatalinaBase();
 
     void setCatalinaBase(File catalinaBase);

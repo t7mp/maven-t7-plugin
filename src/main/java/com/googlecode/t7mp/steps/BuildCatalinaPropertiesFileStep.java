@@ -18,6 +18,9 @@ package com.googlecode.t7mp.steps;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.Writer;
+import java.nio.charset.Charset;
+import java.nio.charset.IllegalCharsetNameException;
+import java.nio.charset.UnsupportedCharsetException;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -46,6 +49,19 @@ public class BuildCatalinaPropertiesFileStep implements Step {
             velocityContext.put("tomcatShutdownPort", configuration.getTomcatShutdownPort() + "");
             velocityContext.put("tomcatShutdownCommand", configuration.getTomcatShutdownCommand());
             velocityContext.put("tomcatHostName", configuration.getTomcatHostName());
+
+            // check if URI encoding is valid.  If not, throw a descriptive setup exception
+            try {
+                Charset.forName(configuration.getTomcatUriEncoding());
+                velocityContext.put("tomcatUriEncoding", configuration.getTomcatUriEncoding());
+            } catch (UnsupportedCharsetException uce) {
+                throw new TomcatSetupException("Unsupported URI encoding: " + configuration.getTomcatUriEncoding(), uce);
+            } catch (IllegalCharsetNameException icne) {
+                throw new TomcatSetupException("Illegal URI encoding: " + configuration.getTomcatUriEncoding(), icne);
+            } catch (IllegalArgumentException iae) {
+                throw new TomcatSetupException("Null URI encoding not allowed", iae);
+            }
+
             Writer writer = new FileWriter(new File(configuration.getCatalinaBase(), "/conf/catalina.properties"));
             template.merge(velocityContext, writer);
             writer.flush();
