@@ -19,6 +19,7 @@ import com.googlecode.t7mp.steps.ArtifactDeploymentSequence;
 import com.googlecode.t7mp.steps.ConfigFilesSequence;
 import com.googlecode.t7mp.steps.CopyConfigResourcesFromClasspathSequence;
 import com.googlecode.t7mp.steps.DefaultStepSequence;
+import com.googlecode.t7mp.steps.DeleteDefaultWebappsSequence;
 import com.googlecode.t7mp.steps.ResolveTomcatStep;
 import com.googlecode.t7mp.steps.WebappSequence;
 
@@ -34,6 +35,7 @@ public class ForkedSetupSequence extends DefaultStepSequence {
     public ForkedSetupSequence() {
         add(new CheckT7ArtifactsStep());
         add(new ResolveTomcatStep());
+        add(new DeleteDefaultWebappsSequence());
         add(new CopyConfigResourcesFromClasspathSequence());
         add(new ConfigFilesSequence());
         add(new ArtifactDeploymentSequence());
